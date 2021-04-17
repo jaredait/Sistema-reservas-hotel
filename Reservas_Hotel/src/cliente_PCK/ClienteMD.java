@@ -10,5 +10,31 @@ package cliente_PCK;
  * @author ASUS
  */
 public class ClienteMD {
+    private Cliente clientedp;
     
+    // constructor
+    public ClienteMD(Cliente clientedp){
+        this.clientedp = clientedp;
+    }
+    
+    public void insertar(){
+        
+    }
+    
+    public void consultar(){
+        
+    }
+    
+    public void modificar(){
+        
+    }
+    
+    public void eliminar(){
+        
+    }
+    
+    public boolean verificarExiste(){
+        
+        return false;
+    }
 }

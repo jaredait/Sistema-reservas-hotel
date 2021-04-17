@@ -18,6 +18,9 @@ public class Reservas_Hotel {
         // TODO code application logic here
         VentanaHabitacion vh = new VentanaHabitacion();
         vh.setVisible(true);
+        for(int i = 18; i < 100; i++){
+            System.out.println(i);
+        }
     }
     
 }

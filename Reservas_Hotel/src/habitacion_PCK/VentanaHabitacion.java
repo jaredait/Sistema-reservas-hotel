@@ -27,7 +27,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tp_GESTION_HABITACIONES = new javax.swing.JTabbedPane();
+        tp_GESTION_HABITACION = new javax.swing.JTabbedPane();
         jp_CREAR_H = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tf_crearH_codigo = new javax.swing.JTextField();
@@ -124,7 +124,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
-        tp_GESTION_HABITACIONES.addTab("Crear habitación", jp_CREAR_H);
+        tp_GESTION_HABITACION.addTab("Crear habitación", jp_CREAR_H);
 
         bt_listarH_listar.setText("Listar habitaciones");
 
@@ -170,7 +170,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        tp_GESTION_HABITACIONES.addTab("Listar todas las habitaciones", jp_LISTAR);
+        tp_GESTION_HABITACION.addTab("Listar todas las habitaciones", jp_LISTAR);
 
         jLabel4.setText("Codigo:");
 
@@ -225,7 +225,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addGap(203, 203, 203))
         );
 
-        tp_GESTION_HABITACIONES.addTab("Consultar datos habitación", jp_CONSULTAR);
+        tp_GESTION_HABITACION.addTab("Consultar datos habitación", jp_CONSULTAR);
 
         jLabel8.setText("Codigo:");
 
@@ -287,7 +287,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addGap(331, 331, 331))
         );
 
-        tp_GESTION_HABITACIONES.addTab("Eliminar habitación", jp_ELIMINAR);
+        tp_GESTION_HABITACION.addTab("Eliminar habitación", jp_ELIMINAR);
 
         jLabel5.setText("Codigo:");
 
@@ -352,17 +352,17 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addContainerGap(262, Short.MAX_VALUE))
         );
 
-        tp_GESTION_HABITACIONES.addTab("Actualizar datos habitación", jp_ACUTALIZAR);
+        tp_GESTION_HABITACION.addTab("Actualizar datos habitación", jp_ACUTALIZAR);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tp_GESTION_HABITACIONES, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tp_GESTION_HABITACIONES, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleName("asdfasdf");
@@ -440,6 +440,6 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private javax.swing.JTextField tf_consultarH_codigo;
     private javax.swing.JTextField tf_crearH_codigo;
     private javax.swing.JTextField tf_eliminarH_codigo;
-    private javax.swing.JTabbedPane tp_GESTION_HABITACIONES;
+    private javax.swing.JTabbedPane tp_GESTION_HABITACION;
     // End of variables declaration//GEN-END:variables
 }

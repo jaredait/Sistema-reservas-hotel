@@ -32,7 +32,8 @@ public class Habitacion {
     public int getCapacidad(){
         return capacidad;
     }
-    public Habitacion verificarDP(){
+    public boolean verificarDP(){
         
+    return false;
     }
 }

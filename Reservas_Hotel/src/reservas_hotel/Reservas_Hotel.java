@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package reservas_hotel;
-
+import habitacion_PCK.*;
 /**
  *
  * @author ASUS
@@ -16,6 +16,8 @@ public class Reservas_Hotel {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VentanaHabitacion vh = new VentanaHabitacion();
+        vh.setVisible(true);
     }
     
 }

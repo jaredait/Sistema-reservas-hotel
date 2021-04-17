@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package reservas_hotel;
 
-/**
- *
- * @author ASUS
- */
+package reservas_hotel;
+import cliente_PCK.*;
+import habitacion_PCK.*;
+
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPrincipal
-     */
+    // atributos
+    private VentanaCliente ventanaCliente;
+    private VentanaHabitacion ventanaHabitacion;
+    // private VentanaReserva ventanaReserva;
+    
+    // constructor
     public MenuPrincipal() {
         initComponents();
+        
+        // inicializar las ventanas
+        ventanaCliente = new VentanaCliente();
+        ventanaHabitacion = new VentanaHabitacion();
+        //ventanaReserva = new VentanaReserva();
+        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,9 +40,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         bt_menuP_clientes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bt_menuP_clientes.setText("Gestión de Clientes");
+        bt_menuP_clientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_menuP_clientesActionPerformed(evt);
+            }
+        });
 
         bt_menuP_habitaciones.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bt_menuP_habitaciones.setText("Gestión de Habitaciones");
+        bt_menuP_habitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_menuP_habitacionesActionPerformed(evt);
+            }
+        });
 
         bt_menuP_reservas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bt_menuP_reservas.setText("Gestión de Reservas");
@@ -69,6 +83,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_menuP_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_clientesActionPerformed
+        ventanaCliente.setVisible(true);
+    }//GEN-LAST:event_bt_menuP_clientesActionPerformed
+
+    private void bt_menuP_habitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_habitacionesActionPerformed
+        this.getDefaultCloseOperation();
+        ventanaHabitacion.setVisible(true);
+    }//GEN-LAST:event_bt_menuP_habitacionesActionPerformed
 
     /**
      * @param args the command line arguments

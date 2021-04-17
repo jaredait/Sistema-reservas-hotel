@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cliente_PCK;
 
-/**
- *
- * @author ASUS
- */
 public class VentanaCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaCliente
-     */
+    // atributos
+    // constructor
     public VentanaCliente() {
         initComponents();
+
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -32,19 +25,48 @@ public class VentanaCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tf_crearC_cedula = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        tf_crearC_cedula1 = new javax.swing.JTextField();
+        tf_crearC_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tf_crearC_cedula2 = new javax.swing.JTextField();
-        tf_crearC_cedula3 = new javax.swing.JTextField();
+        tf_crearC_email = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tf_crearC_cedula4 = new javax.swing.JTextField();
+        tf_crearC_telefono = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_crearC_edad = new javax.swing.JComboBox<>();
+        tf_crearC_apellido = new javax.swing.JTextField();
+        bt_crearC_guardar = new javax.swing.JButton();
         jp_LISTAR = new javax.swing.JPanel();
-        jp_CONSULTAR = new javax.swing.JPanel();
+        bt_listarC_listar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_listarC_tabla = new javax.swing.JTable();
         jp_ACTUALIZAR = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        tf_actualizarC_cedula = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tf_actualizarC_nombre = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        tf_actualizarC_apellido = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        cb_actualizarC_edad = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        tf_actualizarC_email = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tf_actualizarC_telefono = new javax.swing.JTextField();
+        bt_actualizarC_guardar = new javax.swing.JButton();
         jp_ELIMINAR = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        tf_eliminarC_cedula = new javax.swing.JTextField();
+        bt_eliminarC_buscar = new javax.swing.JButton();
+        bt_eliminarC_eliminar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tb_eliminarC_tabla = new javax.swing.JTable();
+        jp_CONSULTAR = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb_listarC_tabla1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        tf_consultarC_cedula = new javax.swing.JTextField();
+        bt_consultarC_buscar = new javax.swing.JButton();
+        bt_gestionC_menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,60 +74,75 @@ public class VentanaCliente extends javax.swing.JFrame {
 
         tf_crearC_cedula.setColumns(10);
 
-        jLabel2.setText("Cédula:");
+        jLabel2.setText("Nombre:");
 
-        tf_crearC_cedula1.setColumns(10);
+        tf_crearC_nombre.setColumns(10);
 
-        jLabel3.setText("Cédula:");
+        jLabel3.setText("Apellido:");
 
-        tf_crearC_cedula2.setColumns(10);
+        tf_crearC_email.setColumns(10);
 
-        tf_crearC_cedula3.setColumns(10);
+        jLabel4.setText("Email:");
 
-        jLabel4.setText("Cédula:");
+        tf_crearC_telefono.setColumns(10);
 
-        tf_crearC_cedula4.setColumns(10);
+        jLabel5.setText("Teléfono:");
 
-        jLabel5.setText("Cédula:");
+        jLabel6.setText("Edad:");
 
-        jLabel6.setText("Cédula:");
+        cb_crearC_edad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }));
+        cb_crearC_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_crearC_edadActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40" }));
+        tf_crearC_apellido.setColumns(10);
+
+        bt_crearC_guardar.setText("Guardar");
 
         javax.swing.GroupLayout jp_CREARLayout = new javax.swing.GroupLayout(jp_CREAR);
         jp_CREAR.setLayout(jp_CREARLayout);
         jp_CREARLayout.setHorizontalGroup(
             jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_CREARLayout.createSequentialGroup()
-                .addGap(294, 294, 294)
                 .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_CREARLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(112, 112, 112)
-                        .addComponent(tf_crearC_cedula4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jp_CREARLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(112, 112, 112)
-                            .addComponent(tf_crearC_cedula3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(294, 294, 294)
                         .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jp_CREARLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(112, 112, 112)
-                                .addComponent(tf_crearC_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jp_CREARLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(106, 106, 106))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_CREARLayout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(102, 102, 102)))
+                                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_crearC_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                    .addComponent(tf_crearC_nombre)))
                             .addGroup(jp_CREARLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(112, 112, 112)
-                                .addComponent(tf_crearC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jp_CREARLayout.createSequentialGroup()
-                            .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(112, 112, 112)
-                            .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tf_crearC_cedula2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(400, Short.MAX_VALUE))
+                                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(106, 106, 106)
+                                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_crearC_apellido)
+                                    .addComponent(tf_crearC_email)
+                                    .addGroup(jp_CREARLayout.createSequentialGroup()
+                                        .addComponent(cb_crearC_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(tf_crearC_telefono)))))
+                    .addGroup(jp_CREARLayout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(380, 380, 380))
+            .addGroup(jp_CREARLayout.createSequentialGroup()
+                .addGap(417, 417, 417)
+                .addComponent(bt_crearC_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_CREARLayout.setVerticalGroup(
             jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,93 +154,331 @@ public class VentanaCliente extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tf_crearC_cedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_crearC_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tf_crearC_cedula2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_crearC_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(cb_crearC_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tf_crearC_cedula3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_crearC_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jp_CREARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tf_crearC_cedula4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(199, Short.MAX_VALUE))
+                    .addComponent(tf_crearC_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addComponent(bt_crearC_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tp_GESTION_CLIENTE.addTab("Crear cliente", jp_CREAR);
+
+        bt_listarC_listar.setText("Listar todos");
+
+        tb_listarC_tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad", "Email", "Teléfono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tb_listarC_tabla);
 
         javax.swing.GroupLayout jp_LISTARLayout = new javax.swing.GroupLayout(jp_LISTAR);
         jp_LISTAR.setLayout(jp_LISTARLayout);
         jp_LISTARLayout.setHorizontalGroup(
             jp_LISTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(jp_LISTARLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addGroup(jp_LISTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bt_listarC_listar)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jp_LISTARLayout.setVerticalGroup(
             jp_LISTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGroup(jp_LISTARLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(bt_listarC_listar)
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         tp_GESTION_CLIENTE.addTab("Listar todos los clientes", jp_LISTAR);
 
-        javax.swing.GroupLayout jp_CONSULTARLayout = new javax.swing.GroupLayout(jp_CONSULTAR);
-        jp_CONSULTAR.setLayout(jp_CONSULTARLayout);
-        jp_CONSULTARLayout.setHorizontalGroup(
-            jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        jp_CONSULTARLayout.setVerticalGroup(
-            jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
-        );
+        jLabel8.setText("Cédula:");
 
-        tp_GESTION_CLIENTE.addTab("Consultar cliente", jp_CONSULTAR);
+        tf_actualizarC_cedula.setColumns(10);
+
+        jLabel9.setText("Nombre:");
+
+        tf_actualizarC_nombre.setColumns(10);
+
+        jLabel10.setText("Apellido:");
+
+        tf_actualizarC_apellido.setColumns(10);
+
+        jLabel11.setText("Edad:");
+
+        cb_actualizarC_edad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99" }));
+        cb_actualizarC_edad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_actualizarC_edadActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Email:");
+
+        tf_actualizarC_email.setColumns(10);
+
+        jLabel13.setText("Teléfono:");
+
+        tf_actualizarC_telefono.setColumns(10);
+
+        bt_actualizarC_guardar.setText("Guardar");
 
         javax.swing.GroupLayout jp_ACTUALIZARLayout = new javax.swing.GroupLayout(jp_ACTUALIZAR);
         jp_ACTUALIZAR.setLayout(jp_ACTUALIZARLayout);
         jp_ACTUALIZARLayout.setHorizontalGroup(
             jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(106, 106, 106))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_ACTUALIZARLayout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(102, 102, 102)))
+                                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_actualizarC_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                    .addComponent(tf_actualizarC_nombre)))
+                            .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(106, 106, 106)
+                                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_actualizarC_apellido)
+                                    .addComponent(tf_actualizarC_email)
+                                    .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                                        .addComponent(cb_actualizarC_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(tf_actualizarC_telefono)))))
+                    .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(380, 380, 380))
+            .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                .addGap(415, 415, 415)
+                .addComponent(bt_actualizarC_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_ACTUALIZARLayout.setVerticalGroup(
             jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tf_actualizarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(tf_actualizarC_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tf_actualizarC_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cb_actualizarC_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tf_actualizarC_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tf_actualizarC_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80)
+                .addComponent(bt_actualizarC_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tp_GESTION_CLIENTE.addTab("Actualizar datos cliente", jp_ACTUALIZAR);
+
+        jLabel14.setText("Cédula:");
+
+        bt_eliminarC_buscar.setText("Buscar");
+
+        bt_eliminarC_eliminar.setText("Eliminar");
+
+        tb_eliminarC_tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad", "Email", "Teléfono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tb_eliminarC_tabla);
 
         javax.swing.GroupLayout jp_ELIMINARLayout = new javax.swing.GroupLayout(jp_ELIMINAR);
         jp_ELIMINAR.setLayout(jp_ELIMINARLayout);
         jp_ELIMINARLayout.setHorizontalGroup(
             jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
+            .addGroup(jp_ELIMINARLayout.createSequentialGroup()
+                .addGroup(jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_ELIMINARLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(jLabel14)
+                        .addGap(74, 74, 74)
+                        .addComponent(tf_eliminarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(bt_eliminarC_buscar))
+                    .addGroup(jp_ELIMINARLayout.createSequentialGroup()
+                        .addGap(404, 404, 404)
+                        .addComponent(bt_eliminarC_eliminar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_ELIMINARLayout.createSequentialGroup()
+                .addGap(0, 107, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
         );
         jp_ELIMINARLayout.setVerticalGroup(
             jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGroup(jp_ELIMINARLayout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addGroup(jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(tf_eliminarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_eliminarC_buscar))
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addComponent(bt_eliminarC_eliminar)
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         tp_GESTION_CLIENTE.addTab("Eliminar cliente", jp_ELIMINAR);
+
+        jp_CONSULTAR.setPreferredSize(new java.awt.Dimension(700, 700));
+
+        tb_listarC_tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "Apellido", "Edad", "Email", "Teléfono"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tb_listarC_tabla1);
+
+        jLabel7.setText("Cédula:");
+
+        bt_consultarC_buscar.setText("Buscar");
+
+        javax.swing.GroupLayout jp_CONSULTARLayout = new javax.swing.GroupLayout(jp_CONSULTAR);
+        jp_CONSULTAR.setLayout(jp_CONSULTARLayout);
+        jp_CONSULTARLayout.setHorizontalGroup(
+            jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_CONSULTARLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(jp_CONSULTARLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel7)
+                .addGap(45, 45, 45)
+                .addComponent(tf_consultarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(bt_consultarC_buscar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jp_CONSULTARLayout.setVerticalGroup(
+            jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_CONSULTARLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(tf_consultarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_consultarC_buscar))
+                .addGap(91, 91, 91)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tp_GESTION_CLIENTE.addTab("Consultar cliente", jp_CONSULTAR);
+
+        bt_gestionC_menu.setText("Menú Principal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tp_GESTION_CLIENTE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_gestionC_menu)
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tp_GESTION_CLIENTE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tp_GESTION_CLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_gestionC_menu)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cb_crearC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_crearC_edadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_crearC_edadActionPerformed
+
+    private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,23 +516,52 @@ public class VentanaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton bt_actualizarC_guardar;
+    private javax.swing.JButton bt_consultarC_buscar;
+    private javax.swing.JButton bt_crearC_guardar;
+    private javax.swing.JButton bt_eliminarC_buscar;
+    private javax.swing.JButton bt_eliminarC_eliminar;
+    private javax.swing.JButton bt_gestionC_menu;
+    private javax.swing.JButton bt_listarC_listar;
+    private javax.swing.JComboBox<String> cb_actualizarC_edad;
+    private javax.swing.JComboBox<String> cb_crearC_edad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jp_ACTUALIZAR;
     private javax.swing.JPanel jp_CONSULTAR;
     private javax.swing.JPanel jp_CREAR;
     private javax.swing.JPanel jp_ELIMINAR;
     private javax.swing.JPanel jp_LISTAR;
+    private javax.swing.JTable tb_eliminarC_tabla;
+    private javax.swing.JTable tb_listarC_tabla;
+    private javax.swing.JTable tb_listarC_tabla1;
+    private javax.swing.JTextField tf_actualizarC_apellido;
+    private javax.swing.JTextField tf_actualizarC_cedula;
+    private javax.swing.JTextField tf_actualizarC_email;
+    private javax.swing.JTextField tf_actualizarC_nombre;
+    private javax.swing.JTextField tf_actualizarC_telefono;
+    private javax.swing.JTextField tf_consultarC_cedula;
+    private javax.swing.JTextField tf_crearC_apellido;
     private javax.swing.JTextField tf_crearC_cedula;
-    private javax.swing.JTextField tf_crearC_cedula1;
-    private javax.swing.JTextField tf_crearC_cedula2;
-    private javax.swing.JTextField tf_crearC_cedula3;
-    private javax.swing.JTextField tf_crearC_cedula4;
+    private javax.swing.JTextField tf_crearC_email;
+    private javax.swing.JTextField tf_crearC_nombre;
+    private javax.swing.JTextField tf_crearC_telefono;
+    private javax.swing.JTextField tf_eliminarC_cedula;
     private javax.swing.JTabbedPane tp_GESTION_CLIENTE;
     // End of variables declaration//GEN-END:variables
 }

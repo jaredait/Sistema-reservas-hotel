@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package habitacion_PCK;
 
-/**
- *
- * @author ASUS
- */
 public class VentanaHabitacion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaHabitacion
-     */
+    // atributos
+    
+    // constructor
     public VentanaHabitacion() {
         initComponents();
+        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -62,11 +56,12 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cb_actualizarH_capacidad = new javax.swing.JComboBox<>();
         bt_crearH_guardar1 = new javax.swing.JButton();
+        bt_gestionH_menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Habitaciones");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(700, 700));
+        setPreferredSize(new java.awt.Dimension(1000, 750));
 
         jp_CREAR_H.setPreferredSize(new java.awt.Dimension(700, 700));
 
@@ -102,7 +97,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addGroup(jp_CREAR_HLayout.createSequentialGroup()
                         .addGap(295, 295, 295)
                         .addComponent(bt_crearH_guardar)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(544, Short.MAX_VALUE))
         );
         jp_CREAR_HLayout.setVerticalGroup(
             jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +116,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addComponent(cb_crearH_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
                 .addComponent(bt_crearH_guardar)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Crear habitación", jp_CREAR_H);
@@ -158,7 +153,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addGroup(jp_LISTARLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(403, Short.MAX_VALUE))
         );
         jp_LISTARLayout.setVerticalGroup(
             jp_LISTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +162,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addComponent(bt_listarH_listar)
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Listar todas las habitaciones", jp_LISTAR);
@@ -210,7 +205,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                         .addComponent(tf_consultarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79)
                         .addComponent(bt_consultarH_buscar)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(404, Short.MAX_VALUE))
         );
         jp_CONSULTARLayout.setVerticalGroup(
             jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +215,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(tf_consultarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_consultarH_buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(203, 203, 203))
         );
@@ -270,7 +265,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addGroup(jp_ELIMINARLayout.createSequentialGroup()
                         .addGap(275, 275, 275)
                         .addComponent(bt_eliminarH_eliminar)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(404, Short.MAX_VALUE))
         );
         jp_ELIMINARLayout.setVerticalGroup(
             jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +275,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(tf_eliminarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_eliminarH_buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(bt_eliminarH_eliminar)
@@ -288,6 +283,8 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         );
 
         tp_GESTION_HABITACION.addTab("Eliminar habitación", jp_ELIMINAR);
+
+        jp_ACUTALIZAR.setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jLabel5.setText("Codigo:");
 
@@ -329,7 +326,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
                         .addGap(224, 224, 224)
                         .addComponent(bt_crearH_guardar1)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(525, Short.MAX_VALUE))
         );
         jp_ACUTALIZARLayout.setVerticalGroup(
             jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,20 +346,30 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addComponent(cb_actualizarH_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(bt_crearH_guardar1)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Actualizar datos habitación", jp_ACUTALIZAR);
+
+        bt_gestionH_menu.setText("Menú Principal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_gestionH_menu)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tp_GESTION_HABITACION, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(bt_gestionH_menu)
+                .addGap(14, 14, 14))
         );
 
         getAccessibleContext().setAccessibleName("asdfasdf");
@@ -412,6 +419,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private javax.swing.JButton bt_crearH_guardar1;
     private javax.swing.JButton bt_eliminarH_buscar;
     private javax.swing.JButton bt_eliminarH_eliminar;
+    private javax.swing.JButton bt_gestionH_menu;
     private javax.swing.JButton bt_listarH_listar;
     private javax.swing.JComboBox<String> cb_actualizarH_capacidad;
     private javax.swing.JComboBox<String> cb_actualizarH_tipo;

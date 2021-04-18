@@ -37,4 +37,9 @@ public class ClienteMD {
         
         return false;
     }
+    
+    public Cliente[] consultarTodos(){
+        
+        return new Cliente[0];
+    }
 }

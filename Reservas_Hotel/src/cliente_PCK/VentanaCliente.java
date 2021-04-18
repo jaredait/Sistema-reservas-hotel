@@ -1,6 +1,10 @@
 package cliente_PCK;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaCliente extends javax.swing.JFrame {
 
@@ -62,6 +66,7 @@ public class VentanaCliente extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         tf_actualizarC_telefono = new javax.swing.JTextField();
         bt_actualizarC_guardar = new javax.swing.JButton();
+        bt_actualizarC_buscar = new javax.swing.JButton();
         jp_ELIMINAR = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         tf_eliminarC_cedula = new javax.swing.JTextField();
@@ -71,7 +76,7 @@ public class VentanaCliente extends javax.swing.JFrame {
         tb_eliminarC_tabla = new javax.swing.JTable();
         jp_CONSULTAR = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tb_listarC_tabla1 = new javax.swing.JTable();
+        tb_consultarC_tabla = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         tf_consultarC_cedula = new javax.swing.JTextField();
         bt_consultarC_buscar = new javax.swing.JButton();
@@ -198,6 +203,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         tp_GESTION_CLIENTE.addTab("Crear cliente", jp_CREAR);
 
         bt_listarC_listar.setText("Listar todos");
+        bt_listarC_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_listarC_listarActionPerformed(evt);
+            }
+        });
 
         tb_listarC_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +280,13 @@ public class VentanaCliente extends javax.swing.JFrame {
         tf_actualizarC_telefono.setColumns(10);
 
         bt_actualizarC_guardar.setText("Guardar");
+        bt_actualizarC_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_actualizarC_guardarActionPerformed(evt);
+            }
+        });
+
+        bt_actualizarC_buscar.setText("Buscar");
 
         javax.swing.GroupLayout jp_ACTUALIZARLayout = new javax.swing.GroupLayout(jp_ACTUALIZAR);
         jp_ACTUALIZAR.setLayout(jp_ACTUALIZARLayout);
@@ -308,7 +325,9 @@ public class VentanaCliente extends javax.swing.JFrame {
                         .addGap(290, 290, 290)
                         .addComponent(jLabel13)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(380, 380, 380))
+                .addGap(27, 27, 27)
+                .addComponent(bt_actualizarC_buscar)
+                .addGap(276, 276, 276))
             .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
                 .addGap(415, 415, 415)
                 .addComponent(bt_actualizarC_guardar)
@@ -317,11 +336,12 @@ public class VentanaCliente extends javax.swing.JFrame {
         jp_ACTUALIZARLayout.setVerticalGroup(
             jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_ACTUALIZARLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(152, 152, 152)
                 .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(tf_actualizarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(tf_actualizarC_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_actualizarC_buscar))
+                .addGap(46, 46, 46)
                 .addGroup(jp_ACTUALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(tf_actualizarC_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -413,7 +433,7 @@ public class VentanaCliente extends javax.swing.JFrame {
 
         jp_CONSULTAR.setPreferredSize(new java.awt.Dimension(700, 700));
 
-        tb_listarC_tabla1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_consultarC_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -429,7 +449,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tb_listarC_tabla1);
+        jScrollPane2.setViewportView(tb_consultarC_tabla);
 
         jLabel7.setText("Cédula:");
 
@@ -496,10 +516,9 @@ public class VentanaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_crearC_edadActionPerformed
 
     private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
-        
+
     }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
     
-    //Boton GUARDAR de crear cliente
     private void bt_crearC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearC_guardarActionPerformed
         // no se almacena aqui la cedula porque el evento focus lost lo hace
         cliente.setNombre(tf_crearC_nombre.getText());
@@ -537,9 +556,29 @@ public class VentanaCliente extends javax.swing.JFrame {
             
     }//GEN-LAST:event_tf_crearC_cedulaFocusLost
 
+    private void bt_listarC_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarC_listarActionPerformed
+        imprimirListaClientes();
+    }//GEN-LAST:event_bt_listarC_listarActionPerformed
+
+    private void bt_actualizarC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_guardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_actualizarC_guardarActionPerformed
+
     // METODOS DE LA CLASE
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // este metodo es valido unicamente para la tabla de listar todos los clientes
+    public void imprimirListaClientes() {
+        Cliente[] clientes = clientemd.consultarTodos();
+        DefaultTableModel model = (DefaultTableModel) tb_listarC_tabla.getModel();
+        model.setRowCount(0);
+        for (Cliente cli : clientes) {
+            model.insertRow(model.getRowCount(), new Object[]{cli.getCedula(),
+                cli.getNombre(), cli.getApellido(), cli.getEdad(),
+                cli.getEmail(), cli.getTelefono()});
+        }
     }
     
     public static void main(String args[]) {
@@ -575,6 +614,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_actualizarC_buscar;
     private javax.swing.JButton bt_actualizarC_guardar;
     private javax.swing.JButton bt_consultarC_buscar;
     private javax.swing.JButton bt_crearC_guardar;
@@ -606,9 +646,9 @@ public class VentanaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jp_CREAR;
     private javax.swing.JPanel jp_ELIMINAR;
     private javax.swing.JPanel jp_LISTAR;
+    private javax.swing.JTable tb_consultarC_tabla;
     private javax.swing.JTable tb_eliminarC_tabla;
     private javax.swing.JTable tb_listarC_tabla;
-    private javax.swing.JTable tb_listarC_tabla1;
     private javax.swing.JTextField tf_actualizarC_apellido;
     private javax.swing.JTextField tf_actualizarC_cedula;
     private javax.swing.JTextField tf_actualizarC_email;

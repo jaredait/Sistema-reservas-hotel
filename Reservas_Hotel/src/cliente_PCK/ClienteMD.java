@@ -33,7 +33,7 @@ public class ClienteMD {
         
     }
     
-    public boolean verificarExiste(){
+    public boolean verificarExisteMD(){
         
         return false;
     }

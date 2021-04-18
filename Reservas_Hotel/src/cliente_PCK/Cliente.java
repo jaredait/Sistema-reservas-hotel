@@ -10,24 +10,27 @@ package cliente_PCK;
  * @author ASUS
  */
 public class Cliente {
-    private String cedula;
+    private int cedula;
     private String nombre;
     private String apellido;
     private int edad;
+    private int telefono;
+    private String email;
     
-    // Constructor
-    public Cliente(String cedula, String nombre, String apellido, int edad){
+    // Constructores sobrecargados
+    public Cliente(int cedula, String nombre, String apellido, int edad){
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
     }
+    public Cliente(){}
     
     // Metodos DP
-    public void setCedula(String cedula){
+    public void setCedula(int cedula){
         this.cedula = cedula;
     }
-    public String getCedula(){
+    public int getCedula(){
         return this.cedula;
     }
     public void setNombre(String nombre){
@@ -48,13 +51,16 @@ public class Cliente {
     public int getEdad(){
         return this.edad;
     }
-    // Escribir verificaciones de cedula y de edad
-    public boolean verificarDP(){
-        
-        return false;
+    public void setEmail(String email){
+        this.email = email;
     }
-    // Escribir sentencia que llame a insertarMD
-    public void guardarDP(){
-        
+    public String getEmail(){
+        return email;
+    }
+    public void setTelefono(int telefono){
+        this.telefono = telefono;
+    }
+    public int getTelefono(){
+        return telefono;
     }
 }

@@ -1,12 +1,21 @@
 package cliente_PCK;
 
+import javax.swing.JOptionPane;
+
 public class VentanaCliente extends javax.swing.JFrame {
 
     // atributos
+    Cliente cliente;
+    ClienteMD clientemd;
+    
     // constructor
     public VentanaCliente() {
         initComponents();
-
+        
+        // instanciar los objetos cliente
+        cliente = new Cliente();
+        clientemd = new ClienteMD(cliente);
+        
         setLocationRelativeTo(null);
 
     }
@@ -73,6 +82,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         jLabel1.setText("Cédula:");
 
         tf_crearC_cedula.setColumns(10);
+        tf_crearC_cedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tf_crearC_cedulaFocusLost(evt);
+            }
+        });
 
         jLabel2.setText("Nombre:");
 
@@ -100,6 +114,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         tf_crearC_apellido.setColumns(10);
 
         bt_crearC_guardar.setText("Guardar");
+        bt_crearC_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_crearC_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CREARLayout = new javax.swing.GroupLayout(jp_CREAR);
         jp_CREAR.setLayout(jp_CREARLayout);
@@ -473,16 +492,56 @@ public class VentanaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cb_crearC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_crearC_edadActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cb_crearC_edadActionPerformed
 
     private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
+    
+    //Boton GUARDAR de crear cliente
+    private void bt_crearC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearC_guardarActionPerformed
+        // no se almacena aqui la cedula porque el evento focus lost lo hace
+        cliente.setNombre(tf_crearC_nombre.getText());
+        cliente.setApellido(tf_crearC_apellido.getText());
+        cliente.setEdad(cb_crearC_edad.getSelectedIndex() + 18);
+        cliente.setEmail(tf_crearC_email.getText());
+        cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+    }//GEN-LAST:event_bt_crearC_guardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    // evento que verifica al terminar de ingresar la cedula si es que el cliente
+    // ya existe en la db
+    private void tf_crearC_cedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_crearC_cedulaFocusLost
+        // si la cedula ingresada tiene 10 digitos
+        if(tf_crearC_cedula.getText().length() == 10){
+            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
+            // si ya existe el cliente en la db
+            if(clientemd.verificarExisteMD()){
+                mensajeEmergente("Atención", "Ya existe el cliente");
+                tf_crearC_nombre.setEditable(false);
+                tf_crearC_apellido.setEditable(false);
+                cb_crearC_edad.setEditable(false);
+                tf_crearC_email.setEditable(false);
+                tf_crearC_telefono.setEditable(false);
+            }
+            else{
+                tf_crearC_nombre.setEditable(true);
+                tf_crearC_apellido.setEditable(true);
+                cb_crearC_edad.setEditable(true);
+                tf_crearC_email.setEditable(true);
+                tf_crearC_telefono.setEditable(true);
+            }
+        } else{
+            mensajeEmergente("Error", "Número de cédula inválido");
+        }
+            
+    }//GEN-LAST:event_tf_crearC_cedulaFocusLost
+
+    // METODOS DE LA CLASE
+    public static void mensajeEmergente(String titulo, String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -1,5 +1,5 @@
-
 package reservas_hotel;
+
 import cliente_PCK.*;
 import habitacion_PCK.*;
 
@@ -9,16 +9,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private VentanaCliente ventanaCliente;
     private VentanaHabitacion ventanaHabitacion;
     // private VentanaReserva ventanaReserva;
-    
+
     // constructor
     public MenuPrincipal() {
         initComponents();
-        
+
         // inicializar las ventanas
         ventanaCliente = new VentanaCliente();
         ventanaHabitacion = new VentanaHabitacion();
         //ventanaReserva = new VentanaReserva();
-        
+
         setLocationRelativeTo(null);
     }
 
@@ -85,11 +85,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_menuP_clientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_clientesActionPerformed
+        this.setVisible(false);
         ventanaCliente.setVisible(true);
     }//GEN-LAST:event_bt_menuP_clientesActionPerformed
 
     private void bt_menuP_habitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_habitacionesActionPerformed
-        this.getDefaultCloseOperation();
+        this.setVisible(false);
         ventanaHabitacion.setVisible(true);
     }//GEN-LAST:event_bt_menuP_habitacionesActionPerformed
 
@@ -123,7 +124,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                this.new MenuPrincipal().setVisible(true);
             }
         });
     }

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaCliente extends javax.swing.JFrame {
@@ -11,16 +12,18 @@ public class VentanaCliente extends javax.swing.JFrame {
     // atributos
     Cliente cliente;
     ClienteMD clientemd;
-    
+    boolean clienteExiste;
+
     // constructor
     public VentanaCliente() {
         initComponents();
-        
+
         // instanciar los objetos cliente
         cliente = new Cliente();
         clientemd = new ClienteMD(cliente);
-        
+
         setLocationRelativeTo(null);
+        clienteExiste = false;
 
     }
 
@@ -287,6 +290,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         });
 
         bt_actualizarC_buscar.setText("Buscar");
+        bt_actualizarC_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_actualizarC_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_ACTUALIZARLayout = new javax.swing.GroupLayout(jp_ACTUALIZAR);
         jp_ACTUALIZAR.setLayout(jp_ACTUALIZARLayout);
@@ -371,8 +379,18 @@ public class VentanaCliente extends javax.swing.JFrame {
         jLabel14.setText("Cédula:");
 
         bt_eliminarC_buscar.setText("Buscar");
+        bt_eliminarC_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarC_buscarActionPerformed(evt);
+            }
+        });
 
         bt_eliminarC_eliminar.setText("Eliminar");
+        bt_eliminarC_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarC_eliminarActionPerformed(evt);
+            }
+        });
 
         tb_eliminarC_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -454,6 +472,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         jLabel7.setText("Cédula:");
 
         bt_consultarC_buscar.setText("Buscar");
+        bt_consultarC_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_consultarC_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CONSULTARLayout = new javax.swing.GroupLayout(jp_CONSULTAR);
         jp_CONSULTAR.setLayout(jp_CONSULTARLayout);
@@ -512,13 +535,13 @@ public class VentanaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cb_crearC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_crearC_edadActionPerformed
-        
+
     }//GEN-LAST:event_cb_crearC_edadActionPerformed
 
     private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
 
     }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
-    
+
     private void bt_crearC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearC_guardarActionPerformed
         // no se almacena aqui la cedula porque el evento focus lost lo hace
         cliente.setNombre(tf_crearC_nombre.getText());
@@ -532,28 +555,27 @@ public class VentanaCliente extends javax.swing.JFrame {
     // ya existe en la db
     private void tf_crearC_cedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_crearC_cedulaFocusLost
         // si la cedula ingresada tiene 10 digitos
-        if(tf_crearC_cedula.getText().length() == 10){
+        if (tf_crearC_cedula.getText().length() == 10) {
             cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
             // si ya existe el cliente en la db
-            if(clientemd.verificarExisteMD()){
+            if (clientemd.verificarExisteMD()) {
                 mensajeEmergente("Atención", "Ya existe el cliente");
                 tf_crearC_nombre.setEditable(false);
                 tf_crearC_apellido.setEditable(false);
                 cb_crearC_edad.setEditable(false);
                 tf_crearC_email.setEditable(false);
                 tf_crearC_telefono.setEditable(false);
-            }
-            else{
+            } else {
                 tf_crearC_nombre.setEditable(true);
                 tf_crearC_apellido.setEditable(true);
                 cb_crearC_edad.setEditable(true);
                 tf_crearC_email.setEditable(true);
                 tf_crearC_telefono.setEditable(true);
             }
-        } else{
+        } else {
             mensajeEmergente("Error", "Número de cédula inválido");
         }
-            
+
     }//GEN-LAST:event_tf_crearC_cedulaFocusLost
 
     private void bt_listarC_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarC_listarActionPerformed
@@ -561,8 +583,92 @@ public class VentanaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_listarC_listarActionPerformed
 
     private void bt_actualizarC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_guardarActionPerformed
-        // TODO add your handling code here:
+        cliente.setNombre(tf_actualizarC_nombre.getText());
+        cliente.setApellido(tf_actualizarC_apellido.getText());
+        cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
+        cliente.setEmail(tf_actualizarC_email.getText());
+        cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+        clientemd.modificar();
+        mensajeEmergente("Actualización", "Cliente actualizado correctamente");
+        tf_actualizarC_cedula.setEditable(true);
+        tf_actualizarC_cedula.setText("");
+        tf_actualizarC_apellido.setText("");
+        cb_actualizarC_edad.setSelectedIndex(0);
+        tf_actualizarC_email.setText("");
+        tf_crearC_telefono.setText("");
     }//GEN-LAST:event_bt_actualizarC_guardarActionPerformed
+
+    private void bt_actualizarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_buscarActionPerformed
+        // si la cedula ingresada tiene 10 digitos
+        if (tf_actualizarC_cedula.getText().length() == 10) {
+            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
+            // si ya existe el cliente en la db
+            if (clientemd.verificarExisteMD()) {
+                clientemd.consultar();
+                tf_actualizarC_cedula.setEditable(false);
+                tf_actualizarC_nombre.setText(cliente.getNombre());
+                tf_actualizarC_apellido.setText(cliente.getApellido());
+                cb_actualizarC_edad.setSelectedIndex(cliente.getEdad() - 18);
+                tf_actualizarC_email.setText(cliente.getEmail());
+                tf_actualizarC_telefono.setText(String.valueOf(cliente.getTelefono()));
+            } else {
+                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            }
+        } else {
+            mensajeEmergente("Error", "Número de cédula inválido");
+        }
+    }//GEN-LAST:event_bt_actualizarC_buscarActionPerformed
+
+    private void bt_consultarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarC_buscarActionPerformed
+        // si la cedula ingresada tiene 10 digitos
+        if (tf_actualizarC_cedula.getText().length() == 10) {
+            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
+            // si ya existe el cliente en la db
+            if (clientemd.verificarExisteMD()) {
+                clienteExiste = true;
+                DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
+                model.setRowCount(0);
+                
+                clientemd.consultar();
+                model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
+                cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
+                cliente.getTelefono()});
+            } else {
+                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            }
+        } else {
+            mensajeEmergente("Error", "Número de cédula inválido");
+        }
+    }//GEN-LAST:event_bt_consultarC_buscarActionPerformed
+
+    private void bt_eliminarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarC_buscarActionPerformed
+        // si la cedula ingresada tiene 10 digitos
+        if (tf_actualizarC_cedula.getText().length() == 10) {
+            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
+            // si ya existe el cliente en la db
+            if (clientemd.verificarExisteMD()) {
+                clienteExiste = true;
+                DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
+                model.setRowCount(0);
+                
+                clientemd.consultar();
+                model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
+                cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
+                cliente.getTelefono()});
+            } else {
+                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            }
+        } else {
+            mensajeEmergente("Error", "Número de cédula inválido");
+        }
+    }//GEN-LAST:event_bt_eliminarC_buscarActionPerformed
+
+    private void bt_eliminarC_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarC_eliminarActionPerformed
+        clientemd.eliminar();
+        mensajeEmergente("Notificación", "Cliente eliminado con éxito");
+        eliminarContenidoTabla(tb_eliminarC_tabla);
+        clienteExiste = false;
+    }//GEN-LAST:event_bt_eliminarC_eliminarActionPerformed
 
     // METODOS DE LA CLASE
     public static void mensajeEmergente(String titulo, String mensaje) {
@@ -580,7 +686,11 @@ public class VentanaCliente extends javax.swing.JFrame {
                 cli.getEmail(), cli.getTelefono()});
         }
     }
-    
+
+    public void eliminarContenidoTabla(JTable tablaActual){
+        DefaultTableModel modelo = (DefaultTableModel) tablaActual.getModel();
+        modelo.setRowCount(0);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

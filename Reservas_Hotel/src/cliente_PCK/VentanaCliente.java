@@ -11,7 +11,6 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     // atributos
     Cliente cliente;
-    ClienteMD clientemd;
     boolean clienteExiste;
 
     // constructor
@@ -20,7 +19,7 @@ public class VentanaCliente extends javax.swing.JFrame {
 
         // instanciar los objetos cliente
         cliente = new Cliente();
-        clientemd = new ClienteMD(cliente);
+
 
         setLocationRelativeTo(null);
         clienteExiste = false;
@@ -557,8 +556,8 @@ public class VentanaCliente extends javax.swing.JFrame {
         // si la cedula ingresada tiene 10 digitos
         if (tf_crearC_cedula.getText().length() == 10) {
             cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db
-            if (clientemd.verificarExisteMD()) {
+            // si ya existe el cliente en la db se bloquean los campos de entrada
+            if (cliente.verificarExisteDP()) {
                 mensajeEmergente("Atención", "Ya existe el cliente");
                 tf_crearC_nombre.setEditable(false);
                 tf_crearC_apellido.setEditable(false);
@@ -588,8 +587,9 @@ public class VentanaCliente extends javax.swing.JFrame {
         cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
         cliente.setEmail(tf_actualizarC_email.getText());
         cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
-        clientemd.modificar();
+        cliente.modificarDP();
         mensajeEmergente("Actualización", "Cliente actualizado correctamente");
+        // se limpian los datos para una nueva actualizacion
         tf_actualizarC_cedula.setEditable(true);
         tf_actualizarC_cedula.setText("");
         tf_actualizarC_apellido.setText("");
@@ -602,9 +602,10 @@ public class VentanaCliente extends javax.swing.JFrame {
         // si la cedula ingresada tiene 10 digitos
         if (tf_actualizarC_cedula.getText().length() == 10) {
             cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db
-            if (clientemd.verificarExisteMD()) {
-                clientemd.consultar();
+            // si ya existe el cliente en la db se bloquea el campo de cedula
+            // y los demas muestran los datos del cliente
+            if (cliente.verificarExisteDP()) {
+                cliente.consultarDP();
                 tf_actualizarC_cedula.setEditable(false);
                 tf_actualizarC_nombre.setText(cliente.getNombre());
                 tf_actualizarC_apellido.setText(cliente.getApellido());
@@ -624,12 +625,14 @@ public class VentanaCliente extends javax.swing.JFrame {
         if (tf_actualizarC_cedula.getText().length() == 10) {
             cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
             // si ya existe el cliente en la db
-            if (clientemd.verificarExisteMD()) {
+            if (cliente.verificarExisteDP()) {
                 clienteExiste = true;
                 DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
                 model.setRowCount(0);
                 
-                clientemd.consultar();
+                // se realiza la consulta y se llena la tabla con los datos del 
+                // cliente
+                cliente.consultarDP();
                 model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
                 cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
                 cliente.getTelefono()});
@@ -646,12 +649,12 @@ public class VentanaCliente extends javax.swing.JFrame {
         if (tf_actualizarC_cedula.getText().length() == 10) {
             cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
             // si ya existe el cliente en la db
-            if (clientemd.verificarExisteMD()) {
+            if (cliente.verificarExisteDP()) {
                 clienteExiste = true;
                 DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
                 model.setRowCount(0);
                 
-                clientemd.consultar();
+                cliente.consultarDP();
                 model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
                 cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
                 cliente.getTelefono()});
@@ -664,10 +667,12 @@ public class VentanaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_eliminarC_buscarActionPerformed
 
     private void bt_eliminarC_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarC_eliminarActionPerformed
-        clientemd.eliminar();
-        mensajeEmergente("Notificación", "Cliente eliminado con éxito");
-        eliminarContenidoTabla(tb_eliminarC_tabla);
-        clienteExiste = false;
+        if (clienteExiste) {
+            cliente.eliminarDP();
+            mensajeEmergente("Notificación", "Cliente eliminado con éxito");
+            eliminarContenidoTabla(tb_eliminarC_tabla);
+            clienteExiste = false;
+        }
     }//GEN-LAST:event_bt_eliminarC_eliminarActionPerformed
 
     // METODOS DE LA CLASE
@@ -677,7 +682,7 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     // este metodo es valido unicamente para la tabla de listar todos los clientes
     public void imprimirListaClientes() {
-        Cliente[] clientes = clientemd.consultarTodos();
+        Cliente[] clientes = cliente.consultarTodosDP();
         DefaultTableModel model = (DefaultTableModel) tb_listarC_tabla.getModel();
         model.setRowCount(0);
         for (Cliente cli : clientes) {

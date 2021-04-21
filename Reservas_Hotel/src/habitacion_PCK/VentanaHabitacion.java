@@ -1,5 +1,6 @@
 package habitacion_PCK;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -65,7 +66,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         cb_actualizarH_tipo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         cb_actualizarH_capacidad = new javax.swing.JComboBox<>();
-        bt_crearH_guardar1 = new javax.swing.JButton();
+        bt_actualizarH_guardar = new javax.swing.JButton();
         cb_actualizarH_estado = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         bt_gestionH_menu = new javax.swing.JButton();
@@ -336,6 +337,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jLabel5.setText("Codigo:");
 
         bt_actualizarH_buscar.setText("Buscar");
+        bt_actualizarH_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_actualizarH_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Tipo:");
 
@@ -345,7 +351,12 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
         cb_actualizarH_capacidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
-        bt_crearH_guardar1.setText("Guardar");
+        bt_actualizarH_guardar.setText("Guardar");
+        bt_actualizarH_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_actualizarH_guardarActionPerformed(evt);
+            }
+        });
 
         cb_actualizarH_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "disponible", "ocupada", "mantenimiento" }));
 
@@ -383,7 +394,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                                 .addGap(72, 72, 72))))
                     .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(bt_crearH_guardar1)))
+                        .addComponent(bt_actualizarH_guardar)))
                 .addContainerGap(489, Short.MAX_VALUE))
         );
         jp_ACUTALIZARLayout.setVerticalGroup(
@@ -407,7 +418,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(cb_actualizarH_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
-                .addComponent(bt_crearH_guardar1)
+                .addComponent(bt_actualizarH_guardar)
                 .addContainerGap(174, Short.MAX_VALUE))
         );
 
@@ -479,8 +490,50 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_eliminarH_eliminarActionPerformed
 
+    private void bt_actualizarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarH_buscarActionPerformed
+        habitacion.setCodigo(tf_actualizarH_codigo.getText());
+        if(habitacion.verificarExisteDP()){
+            // bloquear la modificacion del codigo
+            tf_actualizarH_codigo.setEditable(false);
+            // recorrer los combo box para presentar la opcion actual correcta
+            cb_actualizarH_tipo.setSelectedIndex(obtenerIndice(habitacion.getTipo(), cb_actualizarH_tipo));
+            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(String.valueOf(habitacion.getCapacidad()), cb_actualizarH_capacidad));            
+            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(habitacion.getEstado(), cb_actualizarH_estado)); 
+            habitacionExiste = true;
+        }
+        else{
+            mensajeEmergente("Error", "Código inválido");
+        }
+    }//GEN-LAST:event_bt_actualizarH_buscarActionPerformed
+
+    private void bt_actualizarH_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarH_guardarActionPerformed
+        if(habitacionExiste){
+            // actualizar datos
+            habitacion.setTipo(cb_actualizarH_tipo.getSelectedItem().toString());
+            habitacion.setCapacidad(Integer.parseInt(cb_actualizarH_capacidad.getSelectedItem().toString()));
+            habitacion.setEstado(cb_actualizarH_estado.getSelectedItem().toString());
+            habitacion.modificarDP();
+            
+            // limpiar pestana
+            tf_actualizarH_codigo.setEditable(true);
+            tf_actualizarH_codigo.setText("");
+            cb_actualizarH_tipo.setSelectedIndex(0);
+            cb_actualizarH_capacidad.setSelectedIndex(0);
+            cb_actualizarH_estado.setSelectedIndex(0);
+            
+        }
+    }//GEN-LAST:event_bt_actualizarH_guardarActionPerformed
+
     // METODOS DE LA CLASE
-    public static void mensajeEmergente(String titulo, String mensaje) {
+    private int obtenerIndice(String opcion, JComboBox comboBox){
+        for(int i = 0; i < comboBox.getItemCount(); i++){
+            if(opcion.trim().toLowerCase().equals(comboBox.getComponent(i).toString().toLowerCase()))
+                return i;
+        }
+        return -1;
+    } 
+    
+    private static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -540,9 +593,9 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_actualizarH_buscar;
+    private javax.swing.JButton bt_actualizarH_guardar;
     private javax.swing.JButton bt_consultarH_buscar;
     private javax.swing.JButton bt_crearH_guardar;
-    private javax.swing.JButton bt_crearH_guardar1;
     private javax.swing.JButton bt_eliminarH_buscar;
     private javax.swing.JButton bt_eliminarH_eliminar;
     private javax.swing.JButton bt_gestionH_menu;

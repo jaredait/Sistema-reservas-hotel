@@ -582,20 +582,23 @@ public class VentanaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_listarC_listarActionPerformed
 
     private void bt_actualizarC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_guardarActionPerformed
-        cliente.setNombre(tf_actualizarC_nombre.getText());
-        cliente.setApellido(tf_actualizarC_apellido.getText());
-        cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
-        cliente.setEmail(tf_actualizarC_email.getText());
-        cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
-        cliente.modificarDP();
-        mensajeEmergente("Actualización", "Cliente actualizado correctamente");
-        // se limpian los datos para una nueva actualizacion
-        tf_actualizarC_cedula.setEditable(true);
-        tf_actualizarC_cedula.setText("");
-        tf_actualizarC_apellido.setText("");
-        cb_actualizarC_edad.setSelectedIndex(0);
-        tf_actualizarC_email.setText("");
-        tf_crearC_telefono.setText("");
+        if(clienteExiste){
+            cliente.setNombre(tf_actualizarC_nombre.getText());
+            cliente.setApellido(tf_actualizarC_apellido.getText());
+            cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
+            cliente.setEmail(tf_actualizarC_email.getText());
+            cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+            cliente.modificarDP();
+            mensajeEmergente("Actualización", "Cliente actualizado correctamente");
+            // se limpian los datos para una nueva actualizacion
+            tf_actualizarC_cedula.setEditable(true);
+            tf_actualizarC_cedula.setText("");
+            tf_actualizarC_apellido.setText("");
+            cb_actualizarC_edad.setSelectedIndex(0);
+            tf_actualizarC_email.setText("");
+            tf_crearC_telefono.setText("");
+            clienteExiste = false;
+        }        
     }//GEN-LAST:event_bt_actualizarC_guardarActionPerformed
 
     private void bt_actualizarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_buscarActionPerformed
@@ -612,6 +615,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                 cb_actualizarC_edad.setSelectedIndex(cliente.getEdad() - 18);
                 tf_actualizarC_email.setText(cliente.getEmail());
                 tf_actualizarC_telefono.setText(String.valueOf(cliente.getTelefono()));
+                clienteExiste = true;
             } else {
                 mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
             }

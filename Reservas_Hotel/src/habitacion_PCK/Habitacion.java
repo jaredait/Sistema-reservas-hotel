@@ -6,6 +6,7 @@ public class Habitacion {
     private String codigo;
     private String tipo;
     private int capacidad;
+    private String estado;
     
     // constructor
     public Habitacion(){
@@ -31,7 +32,14 @@ public class Habitacion {
     public int getCapacidad(){
         return capacidad;
     }
+    public void setEstado(String estado){
+        this.estado = estado;
+    }
+    public String getEstado(){
+        return estado;
+    }
     
+    // metodos que se comunican con el MD
      public boolean verificarExisteDP(){
         return habitacionmd.verificarExisteMD();
     }

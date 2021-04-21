@@ -1,6 +1,7 @@
 package habitacion_PCK;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaHabitacion extends javax.swing.JFrame {
@@ -37,6 +38,8 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cb_crearH_capacidad = new javax.swing.JComboBox<>();
         bt_crearH_guardar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        cb_crearH_estado = new javax.swing.JComboBox<>();
         jp_LISTAR = new javax.swing.JPanel();
         bt_listarH_listar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -63,6 +66,8 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cb_actualizarH_capacidad = new javax.swing.JComboBox<>();
         bt_crearH_guardar1 = new javax.swing.JButton();
+        cb_actualizarH_estado = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
         bt_gestionH_menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,27 +94,33 @@ public class VentanaHabitacion extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Estado");
+
+        cb_crearH_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "disponible", "ocupada", "mantenimiento" }));
+
         javax.swing.GroupLayout jp_CREAR_HLayout = new javax.swing.GroupLayout(jp_CREAR_H);
         jp_CREAR_H.setLayout(jp_CREAR_HLayout);
         jp_CREAR_HLayout.setHorizontalGroup(
             jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_CREAR_HLayout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel9))
+                .addGap(74, 74, 74)
                 .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jp_CREAR_HLayout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3))
-                        .addGap(74, 74, 74)
-                        .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cb_crearH_capacidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cb_crearH_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tf_crearH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jp_CREAR_HLayout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(bt_crearH_guardar)))
-                .addContainerGap(544, Short.MAX_VALUE))
+                    .addComponent(cb_crearH_estado, 0, 1, Short.MAX_VALUE)
+                    .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cb_crearH_capacidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cb_crearH_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_crearH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(508, 508, 508))
+            .addGroup(jp_CREAR_HLayout.createSequentialGroup()
+                .addGap(308, 308, 308)
+                .addComponent(bt_crearH_guardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_CREAR_HLayout.setVerticalGroup(
             jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,9 +137,13 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cb_crearH_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
+                .addGap(35, 35, 35)
+                .addGroup(jp_CREAR_HLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cb_crearH_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addComponent(bt_crearH_guardar)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Crear habitación", jp_CREAR_H);
@@ -169,8 +184,8 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                         .addComponent(bt_listarH_listar))
                     .addGroup(jp_LISTARLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(403, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         jp_LISTARLayout.setVerticalGroup(
             jp_LISTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +194,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addComponent(bt_listarH_listar)
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Listar todas las habitaciones", jp_LISTAR);
@@ -205,6 +220,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_consultarH_tabla);
 
         bt_consultarH_buscar.setText("Buscar");
+        bt_consultarH_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_consultarH_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CONSULTARLayout = new javax.swing.GroupLayout(jp_CONSULTAR);
         jp_CONSULTAR.setLayout(jp_CONSULTARLayout);
@@ -222,7 +242,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                         .addComponent(tf_consultarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79)
                         .addComponent(bt_consultarH_buscar)))
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         jp_CONSULTARLayout.setVerticalGroup(
             jp_CONSULTARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +262,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jLabel8.setText("Codigo:");
 
         bt_eliminarH_buscar.setText("Buscar");
+        bt_eliminarH_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarH_buscarActionPerformed(evt);
+            }
+        });
 
         tb_eliminarH_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -262,6 +287,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tb_eliminarH_tabla);
 
         bt_eliminarH_eliminar.setText("Eliminar");
+        bt_eliminarH_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarH_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_ELIMINARLayout = new javax.swing.GroupLayout(jp_ELIMINAR);
         jp_ELIMINAR.setLayout(jp_ELIMINARLayout);
@@ -282,7 +312,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                     .addGroup(jp_ELIMINARLayout.createSequentialGroup()
                         .addGap(275, 275, 275)
                         .addComponent(bt_eliminarH_eliminar)))
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
         jp_ELIMINARLayout.setVerticalGroup(
             jp_ELIMINARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,6 +347,10 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
         bt_crearH_guardar1.setText("Guardar");
 
+        cb_actualizarH_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "disponible", "ocupada", "mantenimiento" }));
+
+        jLabel10.setText("Estado");
+
         javax.swing.GroupLayout jp_ACUTALIZARLayout = new javax.swing.GroupLayout(jp_ACUTALIZAR);
         jp_ACUTALIZAR.setLayout(jp_ACUTALIZARLayout);
         jp_ACUTALIZARLayout.setHorizontalGroup(
@@ -328,22 +362,29 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                         .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
                                 .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(74, 74, 74)
-                                .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cb_actualizarH_capacidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cb_actualizarH_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
+                                        .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7))
+                                        .addGap(74, 74, 74)
+                                        .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cb_actualizarH_capacidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cb_actualizarH_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(tf_actualizarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(39, 39, 39)
+                                .addComponent(bt_actualizarH_buscar))
                             .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(jLabel10)
                                 .addGap(74, 74, 74)
-                                .addComponent(tf_actualizarH_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(39, 39, 39)
-                        .addComponent(bt_actualizarH_buscar))
+                                .addComponent(cb_actualizarH_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72))))
                     .addGroup(jp_ACUTALIZARLayout.createSequentialGroup()
-                        .addGap(224, 224, 224)
+                        .addGap(229, 229, 229)
                         .addComponent(bt_crearH_guardar1)))
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addContainerGap(489, Short.MAX_VALUE))
         );
         jp_ACUTALIZARLayout.setVerticalGroup(
             jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,9 +402,13 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cb_actualizarH_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(26, 26, 26)
+                .addGroup(jp_ACUTALIZARLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(cb_actualizarH_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addComponent(bt_crearH_guardar1)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         tp_GESTION_HABITACION.addTab("Actualizar datos habitación", jp_ACUTALIZAR);
@@ -398,28 +443,69 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         habitacion.setCodigo(tf_crearH_codigo.getText());
         habitacion.setTipo(cb_crearH_tipo.getSelectedItem().toString());
         habitacion.setCapacidad(Integer.parseInt(cb_crearH_tipo.getSelectedItem().toString()));
+        habitacion.setEstado(cb_crearH_estado.getSelectedItem().toString());
         mensajeEmergente("Notificación", "¡Habitación creada con éxito!");
     }//GEN-LAST:event_bt_crearH_guardarActionPerformed
 
     private void bt_listarH_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarH_listarActionPerformed
-       
+        imprmirListaHabitaciones();
     }//GEN-LAST:event_bt_listarH_listarActionPerformed
+
+    private void bt_consultarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarH_buscarActionPerformed
+        habitacion.setCodigo(tf_consultarH_codigo.getText());
+        if(habitacion.verificarExisteDP()){
+            // cargar cliente en la tabla de consulta
+            cargarHabitacion(tb_consultarH_tabla);
+        }
+        else{
+            mensajeEmergente("Error", "Habitación no existe. Crear Habitación primero");
+        }
+    }//GEN-LAST:event_bt_consultarH_buscarActionPerformed
+
+    private void bt_eliminarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarH_buscarActionPerformed
+        habitacion.setCodigo(tf_eliminarH_codigo.getText());
+        if(habitacion.verificarExisteDP()){
+            habitacionExiste = true;
+            cargarHabitacion(tb_eliminarH_tabla);
+        }
+    }//GEN-LAST:event_bt_eliminarH_buscarActionPerformed
+
+    private void bt_eliminarH_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarH_eliminarActionPerformed
+        if(habitacionExiste){
+            habitacion.eliminarDP();
+            mensajeEmergente("Notificación", "¡Habitación eliminada con éxito!");
+            eliminarContenidoTabla(tb_eliminarH_tabla);
+            habitacionExiste = false;
+        }
+    }//GEN-LAST:event_bt_eliminarH_eliminarActionPerformed
 
     // METODOS DE LA CLASE
     public static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void imprmirListaHabitaciones(){
+    private void imprmirListaHabitaciones() {
         Habitacion[] habitaciones = habitacion.consultarTodosDP();
         DefaultTableModel model = (DefaultTableModel) tb_listarH_tabla.getModel();
         model.setRowCount(0);
-        for(Habitacion hab : habitaciones){
+        for (Habitacion hab : habitaciones) {
             model.insertRow(model.getRowCount(), new Object[]{hab.getCodigo(),
-            hab.getTipo(), hab.getCapacidad()});
+                hab.getTipo(), hab.getCapacidad(), hab.getEstado()});
         }
     }
     
+    private void cargarHabitacion(JTable tabla){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{habitacion.getCodigo(), habitacion.getTipo(),
+        habitacion.getCapacidad(), habitacion.getEstado()});
+    }
+
+    public void eliminarContenidoTabla(JTable tablaActual) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaActual.getModel();
+        modelo.setRowCount(0);
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -462,10 +548,13 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private javax.swing.JButton bt_gestionH_menu;
     private javax.swing.JButton bt_listarH_listar;
     private javax.swing.JComboBox<String> cb_actualizarH_capacidad;
+    private javax.swing.JComboBox<String> cb_actualizarH_estado;
     private javax.swing.JComboBox<String> cb_actualizarH_tipo;
     private javax.swing.JComboBox<String> cb_crearH_capacidad;
+    private javax.swing.JComboBox<String> cb_crearH_estado;
     private javax.swing.JComboBox<String> cb_crearH_tipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -473,6 +562,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

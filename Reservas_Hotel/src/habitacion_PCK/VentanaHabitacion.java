@@ -1,15 +1,22 @@
-
 package habitacion_PCK;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaHabitacion extends javax.swing.JFrame {
 
     // atributos
-    
+    private Habitacion habitacion;
+    private boolean habitacionExiste;
+
     // constructor
     public VentanaHabitacion() {
         initComponents();
-        
         setLocationRelativeTo(null);
+
+        // incicializar los atributos
+        habitacion = new Habitacion();
+        habitacionExiste = false;
     }
 
     /**
@@ -76,6 +83,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         cb_crearH_capacidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         bt_crearH_guardar.setText("Guardar");
+        bt_crearH_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_crearH_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CREAR_HLayout = new javax.swing.GroupLayout(jp_CREAR_H);
         jp_CREAR_H.setLayout(jp_CREAR_HLayout);
@@ -122,6 +134,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         tp_GESTION_HABITACION.addTab("Crear habitación", jp_CREAR_H);
 
         bt_listarH_listar.setText("Listar habitaciones");
+        bt_listarH_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_listarH_listarActionPerformed(evt);
+            }
+        });
 
         tb_listarH_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -377,9 +394,32 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void bt_crearH_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearH_guardarActionPerformed
+        habitacion.setCodigo(tf_crearH_codigo.getText());
+        habitacion.setTipo(cb_crearH_tipo.getSelectedItem().toString());
+        habitacion.setCapacidad(Integer.parseInt(cb_crearH_tipo.getSelectedItem().toString()));
+        mensajeEmergente("Notificación", "¡Habitación creada con éxito!");
+    }//GEN-LAST:event_bt_crearH_guardarActionPerformed
+
+    private void bt_listarH_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarH_listarActionPerformed
+       
+    }//GEN-LAST:event_bt_listarH_listarActionPerformed
+
+    // METODOS DE LA CLASE
+    public static void mensajeEmergente(String titulo, String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void imprmirListaHabitaciones(){
+        Habitacion[] habitaciones = habitacion.consultarTodosDP();
+        DefaultTableModel model = (DefaultTableModel) tb_listarH_tabla.getModel();
+        model.setRowCount(0);
+        for(Habitacion hab : habitaciones){
+            model.insertRow(model.getRowCount(), new Object[]{hab.getCodigo(),
+            hab.getTipo(), hab.getCapacidad()});
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -3,16 +3,11 @@ package habitacion_PCK;
 
 public class Habitacion {
     private HabitacionMD habitacionmd;
-    public String codigo;
-    public String tipo;
-    public int capacidad;
+    private String codigo;
+    private String tipo;
+    private int capacidad;
     
     // constructor
-    public Habitacion(String codigo, String tipo, int capacidad){
-        this.codigo = codigo;
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-    }
     public Habitacion(){
         habitacionmd = new HabitacionMD(this);
     }
@@ -35,10 +30,6 @@ public class Habitacion {
     }
     public int getCapacidad(){
         return capacidad;
-    }
-    public boolean verificarDP(){
-        
-    return false;
     }
     
      public boolean verificarExisteDP(){

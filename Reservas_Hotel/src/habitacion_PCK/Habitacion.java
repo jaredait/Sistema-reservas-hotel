@@ -2,6 +2,7 @@
 package habitacion_PCK;
 
 public class Habitacion {
+    private HabitacionMD habitacionmd;
     public String codigo;
     public String tipo;
     public int capacidad;
@@ -11,6 +12,9 @@ public class Habitacion {
         this.codigo = codigo;
         this.tipo = tipo;
         this.capacidad = capacidad;
+    }
+    public Habitacion(){
+        habitacionmd = new HabitacionMD(this);
     }
     
     // metodos
@@ -35,5 +39,29 @@ public class Habitacion {
     public boolean verificarDP(){
         
     return false;
+    }
+    
+     public boolean verificarExisteDP(){
+        return habitacionmd.verificarExisteMD();
+    }
+
+    public void insertarDP() {
+        habitacionmd.insertarMD();
+    }
+
+    public void consultarDP() {
+        habitacionmd.consultarMD();
+    }
+
+    public void modificarDP() {
+        habitacionmd.modificarMD();
+    }
+
+    public void eliminarDP() {
+        habitacionmd.eliminarMD();
+    }
+
+    public Habitacion[] consultarTodosDP() {
+        return habitacionmd.consutltarTodasMD();
     }
 }

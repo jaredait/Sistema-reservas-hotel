@@ -9,23 +9,25 @@ public class HabitacionMD {
     }
     
     // metodos con sentencias sql
-    public void insertar(){
+    public void insertarMD(){
         
     }
-    public void consultar(){
+    public void consultarMD(){
         
     }
-    public void modificar(){
+    public void modificarMD(){
         
     }
-    public void eliminar(){
+    public void eliminarMD(){
         
     }
     // verifica si la habitacion existe en la db mediante la consulta del codigo de habitacion
-    public boolean verificarExiste(){
+    public boolean verificarExisteMD(){
         
         return false;
     }
-    
+    public Habitacion[] consutltarTodasMD(){
+        return new Habitacion[0];
+    }
     
 }

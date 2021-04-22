@@ -1,14 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package reservas_PCK;
 
-/**
- *
- * @author ASUS
- */
 public class ReservaMD {
+    private Reserva reserva;
     
+    // constructor
+    public ReservaMD(Reserva reserva){
+        this.reserva = reserva;
+    }
+    
+    public void insertar(){
+        
+    }
+    
+    public void consultar(){
+        
+    }
+    
+    public void modificar(){
+        
+    }
+    
+    public void eliminar(){
+        
+    }
+    
+    public boolean verificarExisteMD(){
+        return false;
+    }
+    
+    public Reserva[] consultarTodas(){
+        return new Reserva[0];
+    }
 }

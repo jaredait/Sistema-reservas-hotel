@@ -540,7 +540,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
 
     }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
-
+    
     private void bt_crearC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearC_guardarActionPerformed
         // no se almacena aqui la cedula porque el evento focus lost lo hace
         cliente.setNombre(tf_crearC_nombre.getText());

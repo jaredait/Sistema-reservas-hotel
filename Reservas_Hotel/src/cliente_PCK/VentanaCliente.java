@@ -605,16 +605,17 @@ public class VentanaCliente extends javax.swing.JFrame {
             cliente.setApellido(tf_actualizarC_apellido.getText());
             cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
             cliente.setEmail(tf_actualizarC_email.getText());
-            cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+            cliente.setTelefono(Integer.parseInt(tf_actualizarC_telefono.getText()));
             cliente.modificarDP();
             mensajeEmergente("Actualización", "Cliente actualizado correctamente");
             // se limpian los datos para una nueva actualizacion
             tf_actualizarC_cedula.setEditable(true);
             tf_actualizarC_cedula.setText("");
+            tf_actualizarC_nombre.setText("");
             tf_actualizarC_apellido.setText("");
             cb_actualizarC_edad.setSelectedIndex(0);
             tf_actualizarC_email.setText("");
-            tf_crearC_telefono.setText("");
+            tf_actualizarC_telefono.setText("");
             clienteExiste = false;
         }
     }//GEN-LAST:event_bt_actualizarC_guardarActionPerformed
@@ -622,7 +623,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void bt_actualizarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
         if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(tf_crearC_cedula.getText());
+            cliente.setCedula(tf_actualizarC_cedula.getText());
             try {
                 // si ya existe el cliente en la db se bloquea el campo de cedula
                 // y los demas muestran los datos del cliente

@@ -49,12 +49,36 @@ public class ClienteMD {
         }
     }
 
-    public void consultar() {
+    public void consultar() throws SQLException {
+        Cliente[] clientes = consultarTodos();
 
+        for (Cliente temp : clientes) {
+            if (clientedp.getCedula().equals(temp.getCedula())) {
+                clientedp.setNombre(temp.getNombre());
+                clientedp.setApellido(temp.getApellido());
+                clientedp.setEdad(temp.getEdad());
+                clientedp.setTelefono(temp.getTelefono());
+                clientedp.setEmail(temp.getEmail());
+            }
+        }
     }
 
     public void modificar() {
+        try {
+            PreparedStatement st = conn.prepareStatement("UPDATE Cliente SET nombre=?, apellido=?, edad=?, telefono=?, email=? where cedula= ?");
+            st.setString(1, clientedp.getNombre());
+            st.setString(2, clientedp.getApellido());
+            st.setInt(3, clientedp.getEdad());
+            st.setInt(4, clientedp.getTelefono());
+            st.setString(5, clientedp.getEmail());
+            st.setString(6, clientedp.getCedula());
+            int a = st.executeUpdate();
+            System.out.println("INSERTAR CLIENTE EXITOSO");
 
+        } catch (SQLException ex) {
+            System.out.println("INSERTAR CLIENTE FALLIDO");
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void eliminar() {
@@ -100,11 +124,10 @@ public class ClienteMD {
                 int edad = result.getInt("edad");
                 int telefono = result.getInt("telefono");
                 String email = String.valueOf(result.getString("email"));
-                arrClientes[i] = new Cliente(cedula, nombre, apellido, edad, telefono, email); 
+                arrClientes[i] = new Cliente(cedula, nombre, apellido, edad, telefono, email);
                 i++;
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("CONSULTAR TODOS FALLIDO");
             ex.printStackTrace();
         }

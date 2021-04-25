@@ -86,7 +86,7 @@ public class Cliente {
         clientemd.insertar();
     }
 
-    public void consultarDP() {
+    public void consultarDP() throws SQLException {
         clientemd.consultar();
     }
 

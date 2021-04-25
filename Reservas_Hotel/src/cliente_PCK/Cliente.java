@@ -31,6 +31,14 @@ public class Cliente {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+    public Cliente(String cedula, String nombre, String apellido, int edad, int telefono, String email){
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.telefono = telefono;
+        this.email = email;
+    }
     
     // Metodos DP
     public void setCedula(String cedula){
@@ -90,7 +98,7 @@ public class Cliente {
         clientemd.eliminar();
     }
 
-    public Cliente[] consultarTodosDP() {
+    public Cliente[] consultarTodosDP() throws SQLException {
         return clientemd.consultarTodos();
     }
 

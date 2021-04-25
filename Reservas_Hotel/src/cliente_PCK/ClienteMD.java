@@ -40,7 +40,7 @@ public class ClienteMD {
             st.setInt(4, clientedp.getEdad());
             st.setInt(5, clientedp.getTelefono());
             st.setString(6, clientedp.getEmail());
-            int a = st.executeUpdate();            
+            int a = st.executeUpdate();
             System.out.println("INSERTAR CLIENTE EXITOSO");
 
         } catch (SQLException ex) {
@@ -68,10 +68,11 @@ public class ClienteMD {
         // intentar encontrar el numero de cedula en la tabla
         try {
             result = stmt.executeQuery(cadena);
-            while(result.next()){
+            while (result.next()) {
                 String res = result.getString("cedula");
-                if(clientedp.getCedula().equals(res))
+                if (clientedp.getCedula().equals(res)) {
                     clienteExiste = true;
+                }
             }
         } catch (Exception ex) {
             System.out.println("NO HAY ELEMENTOS EN LA TABLA CLIENTE");
@@ -80,8 +81,33 @@ public class ClienteMD {
         return clienteExiste;
     }
 
-    public Cliente[] consultarTodos() {
+    public Cliente[] consultarTodos() throws SQLException {
+        // obtener el numero de filas para dimensionar el arreglo de retorno
+        stmt = conn.createStatement();
+        result = stmt.executeQuery("SELECT COUNT(*) AS rowcount FROM CLIENTE");
+        result.next();
+        int count = result.getInt("rowcount");
 
-        return new Cliente[0];
+        Cliente[] arrClientes = new Cliente[count];
+        cadena = "select cedula, nombre, apellido, edad, telefono, email from CLIENTE";
+        try {
+            result = stmt.executeQuery(cadena);
+            int i = 0;
+            while (result.next()) {
+                String cedula = String.valueOf(result.getString("cedula"));
+                String nombre = String.valueOf(result.getString("nombre"));
+                String apellido = String.valueOf(result.getString("apellido"));
+                int edad = result.getInt("edad");
+                int telefono = result.getInt("telefono");
+                String email = String.valueOf(result.getString("email"));
+                arrClientes[i] = new Cliente(cedula, nombre, apellido, edad, telefono, email); 
+                i++;
+            }
+        }
+        catch(Exception ex){
+            System.out.println("CONSULTAR TODOS FALLIDO");
+            ex.printStackTrace();
+        }
+        return arrClientes;
     }
 }

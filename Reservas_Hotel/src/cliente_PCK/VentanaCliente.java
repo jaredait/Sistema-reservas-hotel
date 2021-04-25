@@ -1,5 +1,6 @@
 package cliente_PCK;
 
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,6 @@ public class VentanaCliente extends javax.swing.JFrame {
 
         // instanciar los objetos cliente
         cliente = new Cliente();
-
 
         setLocationRelativeTo(null);
         clienteExiste = false;
@@ -540,7 +540,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void cb_actualizarC_edadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_actualizarC_edadActionPerformed
 
     }//GEN-LAST:event_cb_actualizarC_edadActionPerformed
-    
+
     private void bt_crearC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearC_guardarActionPerformed
         // no se almacena aqui la cedula porque el evento focus lost lo hace
         cliente.setNombre(tf_crearC_nombre.getText());
@@ -548,8 +548,17 @@ public class VentanaCliente extends javax.swing.JFrame {
         cliente.setEdad(cb_crearC_edad.getSelectedIndex() + 18);
         cliente.setEmail(tf_crearC_email.getText());
         cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+
         cliente.insertarDP();
-        System.out.println("GUARDAR EJECUTADO");
+
+        tf_crearC_cedula.setText("");
+        tf_crearC_nombre.setText("");
+        tf_crearC_apellido.setText("");
+        cb_crearC_edad.setSelectedIndex(0);
+        tf_crearC_email.setText("");
+        tf_crearC_telefono.setText("");
+
+        mensajeEmergente("Notificación", "Cliente creado con éxito");
     }//GEN-LAST:event_bt_crearC_guardarActionPerformed
 
     // evento que verifica al terminar de ingresar la cedula si es que el cliente
@@ -564,15 +573,18 @@ public class VentanaCliente extends javax.swing.JFrame {
                     mensajeEmergente("Atención", "Ya existe el cliente");
                     tf_crearC_nombre.setEditable(false);
                     tf_crearC_apellido.setEditable(false);
-                    cb_crearC_edad.setEditable(false);
+                    cb_crearC_edad.setEnabled(false);
                     tf_crearC_email.setEditable(false);
                     tf_crearC_telefono.setEditable(false);
+                    bt_crearC_guardar.setEnabled(false);
                 } else {
                     tf_crearC_nombre.setEditable(true);
                     tf_crearC_apellido.setEditable(true);
-                    cb_crearC_edad.setEditable(true);
+                    cb_crearC_edad.setEnabled(true);
                     tf_crearC_email.setEditable(true);
                     tf_crearC_telefono.setEditable(true);
+                    bt_crearC_guardar.setEnabled(true);
+
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -588,7 +600,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_listarC_listarActionPerformed
 
     private void bt_actualizarC_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_guardarActionPerformed
-        if(clienteExiste){
+        if (clienteExiste) {
             cliente.setNombre(tf_actualizarC_nombre.getText());
             cliente.setApellido(tf_actualizarC_apellido.getText());
             cliente.setEdad(cb_actualizarC_edad.getSelectedIndex() + 18);
@@ -604,7 +616,7 @@ public class VentanaCliente extends javax.swing.JFrame {
             tf_actualizarC_email.setText("");
             tf_crearC_telefono.setText("");
             clienteExiste = false;
-        }        
+        }
     }//GEN-LAST:event_bt_actualizarC_guardarActionPerformed
 
     private void bt_actualizarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_buscarActionPerformed
@@ -644,7 +656,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                     clienteExiste = true;
                     DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
                     model.setRowCount(0);
-                    
+
                     // se realiza la consulta y se llena la tabla con los datos del
                     // cliente
                     cliente.consultarDP();
@@ -672,7 +684,7 @@ public class VentanaCliente extends javax.swing.JFrame {
                     clienteExiste = true;
                     DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
                     model.setRowCount(0);
-                    
+
                     cliente.consultarDP();
                     model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
                         cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
@@ -704,20 +716,26 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     // este metodo es valido unicamente para la tabla de listar todos los clientes
     public void imprimirListaClientes() {
-        Cliente[] clientes = cliente.consultarTodosDP();
-        DefaultTableModel model = (DefaultTableModel) tb_listarC_tabla.getModel();
-        model.setRowCount(0);
-        for (Cliente cli : clientes) {
-            model.insertRow(model.getRowCount(), new Object[]{cli.getCedula(),
-                cli.getNombre(), cli.getApellido(), cli.getEdad(),
-                cli.getEmail(), cli.getTelefono()});
+        try {
+            Cliente[] clientes = cliente.consultarTodosDP();
+            DefaultTableModel model = (DefaultTableModel) tb_listarC_tabla.getModel();
+            model.setRowCount(0);
+
+            for (Cliente cli : clientes) {
+                model.insertRow(model.getRowCount(), new Object[]{cli.getCedula(),
+                    cli.getNombre(), cli.getApellido(), cli.getEdad(),
+                    cli.getEmail(), cli.getTelefono()});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void eliminarContenidoTabla(JTable tablaActual){
+    public void eliminarContenidoTabla(JTable tablaActual) {
         DefaultTableModel modelo = (DefaultTableModel) tablaActual.getModel();
         modelo.setRowCount(0);
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

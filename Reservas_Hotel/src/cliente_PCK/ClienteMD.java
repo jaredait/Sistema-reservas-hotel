@@ -82,6 +82,14 @@ public class ClienteMD {
     }
 
     public void eliminar() {
+        try {
+            PreparedStatement st = conn.prepareStatement("DELETE FROM Cliente WHERE cedula=?");
+            st.setString(1, clientedp.getCedula());
+            int a = st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
     }
 

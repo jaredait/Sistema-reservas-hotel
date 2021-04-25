@@ -677,8 +677,8 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     private void bt_eliminarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
-        if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(tf_crearC_cedula.getText());
+        if (tf_eliminarC_cedula.getText().length() == 10) {
+            cliente.setCedula(tf_eliminarC_cedula.getText());
             try {
                 // si ya existe el cliente en la db
                 if (cliente.verificarExisteDP()) {

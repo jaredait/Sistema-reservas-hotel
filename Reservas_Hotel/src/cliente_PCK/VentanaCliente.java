@@ -548,6 +548,8 @@ public class VentanaCliente extends javax.swing.JFrame {
         cliente.setEdad(cb_crearC_edad.getSelectedIndex() + 18);
         cliente.setEmail(tf_crearC_email.getText());
         cliente.setTelefono(Integer.parseInt(tf_crearC_telefono.getText()));
+        cliente.insertarDP();
+        System.out.println("GUARDAR EJECUTADO");
     }//GEN-LAST:event_bt_crearC_guardarActionPerformed
 
     // evento que verifica al terminar de ingresar la cedula si es que el cliente
@@ -555,21 +557,25 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void tf_crearC_cedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_crearC_cedulaFocusLost
         // si la cedula ingresada tiene 10 digitos
         if (tf_crearC_cedula.getText().length() == 10) {
-            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db se bloquean los campos de entrada
-            if (cliente.verificarExisteDP()) {
-                mensajeEmergente("Atención", "Ya existe el cliente");
-                tf_crearC_nombre.setEditable(false);
-                tf_crearC_apellido.setEditable(false);
-                cb_crearC_edad.setEditable(false);
-                tf_crearC_email.setEditable(false);
-                tf_crearC_telefono.setEditable(false);
-            } else {
-                tf_crearC_nombre.setEditable(true);
-                tf_crearC_apellido.setEditable(true);
-                cb_crearC_edad.setEditable(true);
-                tf_crearC_email.setEditable(true);
-                tf_crearC_telefono.setEditable(true);
+            cliente.setCedula(tf_crearC_cedula.getText());
+            try {
+                // si ya existe el cliente en la db se bloquean los campos de entrada
+                if (cliente.verificarExisteDP()) {
+                    mensajeEmergente("Atención", "Ya existe el cliente");
+                    tf_crearC_nombre.setEditable(false);
+                    tf_crearC_apellido.setEditable(false);
+                    cb_crearC_edad.setEditable(false);
+                    tf_crearC_email.setEditable(false);
+                    tf_crearC_telefono.setEditable(false);
+                } else {
+                    tf_crearC_nombre.setEditable(true);
+                    tf_crearC_apellido.setEditable(true);
+                    cb_crearC_edad.setEditable(true);
+                    tf_crearC_email.setEditable(true);
+                    tf_crearC_telefono.setEditable(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             mensajeEmergente("Error", "Número de cédula inválido");
@@ -604,20 +610,24 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void bt_actualizarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
         if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db se bloquea el campo de cedula
-            // y los demas muestran los datos del cliente
-            if (cliente.verificarExisteDP()) {
-                cliente.consultarDP();
-                tf_actualizarC_cedula.setEditable(false);
-                tf_actualizarC_nombre.setText(cliente.getNombre());
-                tf_actualizarC_apellido.setText(cliente.getApellido());
-                cb_actualizarC_edad.setSelectedIndex(cliente.getEdad() - 18);
-                tf_actualizarC_email.setText(cliente.getEmail());
-                tf_actualizarC_telefono.setText(String.valueOf(cliente.getTelefono()));
-                clienteExiste = true;
-            } else {
-                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            cliente.setCedula(tf_crearC_cedula.getText());
+            try {
+                // si ya existe el cliente en la db se bloquea el campo de cedula
+                // y los demas muestran los datos del cliente
+                if (cliente.verificarExisteDP()) {
+                    cliente.consultarDP();
+                    tf_actualizarC_cedula.setEditable(false);
+                    tf_actualizarC_nombre.setText(cliente.getNombre());
+                    tf_actualizarC_apellido.setText(cliente.getApellido());
+                    cb_actualizarC_edad.setSelectedIndex(cliente.getEdad() - 18);
+                    tf_actualizarC_email.setText(cliente.getEmail());
+                    tf_actualizarC_telefono.setText(String.valueOf(cliente.getTelefono()));
+                    clienteExiste = true;
+                } else {
+                    mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             mensajeEmergente("Error", "Número de cédula inválido");
@@ -627,21 +637,25 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void bt_consultarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
         if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db
-            if (cliente.verificarExisteDP()) {
-                clienteExiste = true;
-                DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
-                model.setRowCount(0);
-                
-                // se realiza la consulta y se llena la tabla con los datos del 
-                // cliente
-                cliente.consultarDP();
-                model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
-                cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
-                cliente.getTelefono()});
-            } else {
-                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            cliente.setCedula(tf_crearC_cedula.getText());
+            try {
+                // si ya existe el cliente en la db
+                if (cliente.verificarExisteDP()) {
+                    clienteExiste = true;
+                    DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
+                    model.setRowCount(0);
+                    
+                    // se realiza la consulta y se llena la tabla con los datos del
+                    // cliente
+                    cliente.consultarDP();
+                    model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
+                        cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
+                        cliente.getTelefono()});
+                } else {
+                    mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             mensajeEmergente("Error", "Número de cédula inválido");
@@ -651,19 +665,23 @@ public class VentanaCliente extends javax.swing.JFrame {
     private void bt_eliminarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
         if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(Integer.parseInt(tf_crearC_cedula.getText()));
-            // si ya existe el cliente en la db
-            if (cliente.verificarExisteDP()) {
-                clienteExiste = true;
-                DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
-                model.setRowCount(0);
-                
-                cliente.consultarDP();
-                model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
-                cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
-                cliente.getTelefono()});
-            } else {
-                mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+            cliente.setCedula(tf_crearC_cedula.getText());
+            try {
+                // si ya existe el cliente en la db
+                if (cliente.verificarExisteDP()) {
+                    clienteExiste = true;
+                    DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
+                    model.setRowCount(0);
+                    
+                    cliente.consultarDP();
+                    model.addRow(new Object[]{cliente.getCedula(), cliente.getNombre(),
+                        cliente.getApellido(), cliente.getEdad(), cliente.getEmail(),
+                        cliente.getTelefono()});
+                } else {
+                    mensajeEmergente("Error", "Cliente no existe. Crear cliente primero");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             mensajeEmergente("Error", "Número de cédula inválido");

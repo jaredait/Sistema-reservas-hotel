@@ -5,13 +5,18 @@
  */
 package cliente_PCK;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ASUS
  */
 public class Cliente {
     private ClienteMD clientemd;
-    private int cedula;
+    private String cedula;
     private String nombre;
     private String apellido;
     private int edad;
@@ -20,13 +25,18 @@ public class Cliente {
     
     // Constructores sobrecargados
     public Cliente(){
-    clientemd = new ClienteMD(this);}
+        try {
+            clientemd = new ClienteMD(this);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
     
     // Metodos DP
-    public void setCedula(int cedula){
+    public void setCedula(String cedula){
         this.cedula = cedula;
     }
-    public int getCedula(){
+    public String getCedula(){
         return this.cedula;
     }
     public void setNombre(String nombre){
@@ -60,7 +70,7 @@ public class Cliente {
         return telefono;
     }
     // metodos que se comunican con ClienteMD
-    public boolean verificarExisteDP(){
+    public boolean verificarExisteDP() throws SQLException{
         return clientemd.verificarExisteMD();
     }
 

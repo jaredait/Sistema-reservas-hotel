@@ -649,13 +649,13 @@ public class VentanaCliente extends javax.swing.JFrame {
 
     private void bt_consultarC_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarC_buscarActionPerformed
         // si la cedula ingresada tiene 10 digitos
-        if (tf_actualizarC_cedula.getText().length() == 10) {
-            cliente.setCedula(tf_crearC_cedula.getText());
+        if (tf_consultarC_cedula.getText().length() == 10) {
+            cliente.setCedula(tf_consultarC_cedula.getText());
             try {
                 // si ya existe el cliente en la db
                 if (cliente.verificarExisteDP()) {
                     clienteExiste = true;
-                    DefaultTableModel model = (DefaultTableModel) tb_eliminarC_tabla.getModel();
+                    DefaultTableModel model = (DefaultTableModel) tb_consultarC_tabla.getModel();
                     model.setRowCount(0);
 
                     // se realiza la consulta y se llena la tabla con los datos del

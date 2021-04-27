@@ -1,4 +1,4 @@
-package reservas_hotel;
+package driver_PCK;
 
 import cliente_PCK.*;
 import habitacion_PCK.*;
@@ -56,6 +56,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         bt_menuP_reservas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         bt_menuP_reservas.setText("Gestión de Reservas");
+        bt_menuP_reservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_menuP_reservasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +98,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         ventanaHabitacion.setVisible(true);
     }//GEN-LAST:event_bt_menuP_habitacionesActionPerformed
+
+    private void bt_menuP_reservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_reservasActionPerformed
+        this.setVisible(false);
+        ventanaHabitacion.setVisible(true);
+    }//GEN-LAST:event_bt_menuP_reservasActionPerformed
 
     /**
      * @param args the command line arguments

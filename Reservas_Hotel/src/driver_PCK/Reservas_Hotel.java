@@ -1,5 +1,5 @@
 
-package reservas_hotel;
+package driver_PCK;
 
 public class Reservas_Hotel {
 

@@ -52,7 +52,14 @@ public class HabitacionMD {
     }
 
     public void consultarMD() {
-
+        Habitacion[] habitaciones = consutltarTodasMD();
+        for(Habitacion temp : habitaciones){
+            if(habitaciondp.getCodigo().equals(temp.getCodigo())){
+                habitaciondp.setTipo(temp.getTipo());
+                habitaciondp.setCapacidad(temp.getCapacidad());
+                habitaciondp.setEstado(temp.getEstado());
+            }
+        }
     }
 
     public void modificarMD() {

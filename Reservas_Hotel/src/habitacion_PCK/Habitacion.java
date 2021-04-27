@@ -12,6 +12,14 @@ public class Habitacion {
     public Habitacion(){
         habitacionmd = new HabitacionMD(this);
     }
+
+    public Habitacion(String codigo, String tipo, int capacidad, String estado) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.capacidad = capacidad;
+        this.estado = estado;
+    }
+    
     
     // metodos
     public void setCodigo(String codigo){

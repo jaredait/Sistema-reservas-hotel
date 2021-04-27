@@ -70,7 +70,35 @@ public class HabitacionMD {
     }
 
     public Habitacion[] consutltarTodasMD() {
-        return new Habitacion[0];
+        int count = 0;
+        Habitacion[] habitaciones = null;
+        try {
+            // obtener el numero de filas para dimensionar el arreglo de retorno  
+            cadena = "SELECT COUNT(*) AS rowcount FROM HABITACION";
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(cadena);
+            result.next();
+            count = result.getInt("rowcount");
+
+            habitaciones = new Habitacion[count];
+
+            cadena = "SELECT codigo, tipo, capacidad, estado FROM Habitacion";
+            result = stmt.executeQuery(cadena);
+            int i = 0;
+            while (result.next()) {
+                String codigo = result.getString("codigo");
+                String tipo = result.getString("tipo");
+                int capacidad = result.getInt("capacidad");
+                String estado = result.getString("estado");
+                habitaciones[i] = new Habitacion(codigo, tipo, capacidad, estado);
+                i++;
+            }
+            System.out.println("CONSULTAR TODAS EXITOSO");
+        } catch (SQLException ex) {
+            System.out.println("CONSULTAR TODAS FALLIDO");
+            Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return habitaciones;
     }
 
 }

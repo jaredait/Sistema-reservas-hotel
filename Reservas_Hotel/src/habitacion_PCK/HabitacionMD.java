@@ -53,8 +53,8 @@ public class HabitacionMD {
 
     public void consultarMD() {
         Habitacion[] habitaciones = consutltarTodasMD();
-        for(Habitacion temp : habitaciones){
-            if(habitaciondp.getCodigo().equals(temp.getCodigo())){
+        for (Habitacion temp : habitaciones) {
+            if (habitaciondp.getCodigo().equals(temp.getCodigo())) {
                 habitaciondp.setTipo(temp.getTipo());
                 habitaciondp.setCapacidad(temp.getCapacidad());
                 habitaciondp.setEstado(temp.getEstado());
@@ -63,17 +63,37 @@ public class HabitacionMD {
     }
 
     public void modificarMD() {
-
+        
     }
 
     public void eliminarMD() {
-
+        try {
+            PreparedStatement st = conn.prepareStatement("DELETE FROM Habitacion WHERE codigo=?");
+            st.setString(1, habitaciondp.getCodigo());
+            int a = st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // verifica si la habitacion existe en la db mediante la consulta del codigo de habitacion
     public boolean verificarExisteMD() {
+        boolean habitacionExiste = false;
 
-        return false;
+        cadena = "SELECT codigo FROM habitacion";
+        try {
+            result = stmt.executeQuery(cadena);
+            while (result.next()) {
+                if (habitaciondp.getCodigo().equals(result.getString("codigo"))) {
+                    habitacionExiste = true;
+                }
+            }
+            System.out.println("VERIFICAR EXISTE EXITOSO");
+        } catch (SQLException ex) {
+            System.out.println("VERIFICAR EXISTE FALLIDO");
+            Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return habitacionExiste;
     }
 
     public Habitacion[] consutltarTodasMD() {

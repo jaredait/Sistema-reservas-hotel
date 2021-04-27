@@ -17,7 +17,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     // atributos
     private Habitacion habitacion;
     private boolean habitacionExiste;
-            
+
     // constructor
     public VentanaHabitacion() {
         initComponents();
@@ -472,25 +472,26 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
     private void bt_consultarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarH_buscarActionPerformed
         habitacion.setCodigo(tf_consultarH_codigo.getText());
-        if(habitacion.verificarExisteDP()){
+        if (habitacion.verificarExisteDP()) {
             // cargar cliente en la tabla de consulta
+            habitacion.consultarDP();
             cargarHabitacion(tb_consultarH_tabla);
-        }
-        else{
+        } else {
             mensajeEmergente("Error", "Habitación no existe. Crear Habitación primero");
         }
     }//GEN-LAST:event_bt_consultarH_buscarActionPerformed
 
     private void bt_eliminarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarH_buscarActionPerformed
         habitacion.setCodigo(tf_eliminarH_codigo.getText());
-        if(habitacion.verificarExisteDP()){
+        if (habitacion.verificarExisteDP()) {
+            habitacion.consultarDP();
             habitacionExiste = true;
             cargarHabitacion(tb_eliminarH_tabla);
         }
     }//GEN-LAST:event_bt_eliminarH_buscarActionPerformed
 
     private void bt_eliminarH_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarH_eliminarActionPerformed
-        if(habitacionExiste){
+        if (habitacionExiste) {
             habitacion.eliminarDP();
             mensajeEmergente("Notificación", "¡Habitación eliminada con éxito!");
             eliminarContenidoTabla(tb_eliminarH_tabla);
@@ -500,28 +501,27 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
     private void bt_actualizarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarH_buscarActionPerformed
         habitacion.setCodigo(tf_actualizarH_codigo.getText());
-        if(habitacion.verificarExisteDP()){
+        if (habitacion.verificarExisteDP()) {
             // bloquear la modificacion del codigo
             tf_actualizarH_codigo.setEditable(false);
             // recorrer los combo box para presentar la opcion actual correcta
             cb_actualizarH_tipo.setSelectedIndex(obtenerIndice(habitacion.getTipo(), cb_actualizarH_tipo));
-            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(String.valueOf(habitacion.getCapacidad()), cb_actualizarH_capacidad));            
-            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(habitacion.getEstado(), cb_actualizarH_estado)); 
+            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(String.valueOf(habitacion.getCapacidad()), cb_actualizarH_capacidad));
+            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(habitacion.getEstado(), cb_actualizarH_estado));
             habitacionExiste = true;
-        }
-        else{
+        } else {
             mensajeEmergente("Error", "Código inválido");
         }
     }//GEN-LAST:event_bt_actualizarH_buscarActionPerformed
 
     private void bt_actualizarH_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarH_guardarActionPerformed
-        if(habitacionExiste){
+        if (habitacionExiste) {
             // actualizar datos
             habitacion.setTipo(cb_actualizarH_tipo.getSelectedItem().toString());
             habitacion.setCapacidad(Integer.parseInt(cb_actualizarH_capacidad.getSelectedItem().toString()));
             habitacion.setEstado(cb_actualizarH_estado.getSelectedItem().toString());
             habitacion.modificarDP();
-            
+
             // limpiar pestana
             tf_actualizarH_codigo.setEditable(true);
             tf_actualizarH_codigo.setText("");
@@ -529,19 +529,20 @@ public class VentanaHabitacion extends javax.swing.JFrame {
             cb_actualizarH_capacidad.setSelectedIndex(0);
             cb_actualizarH_estado.setSelectedIndex(0);
             habitacionExiste = false;
-            
+
         }
     }//GEN-LAST:event_bt_actualizarH_guardarActionPerformed
 
     // METODOS DE LA CLASE
-    private int obtenerIndice(String opcion, JComboBox comboBox){
-        for(int i = 0; i < comboBox.getItemCount(); i++){
-            if(opcion.trim().toLowerCase().equals(comboBox.getComponent(i).toString().toLowerCase()))
+    private int obtenerIndice(String opcion, JComboBox comboBox) {
+        for (int i = 0; i < comboBox.getItemCount(); i++) {
+            if (opcion.trim().toLowerCase().equals(comboBox.getComponent(i).toString().toLowerCase())) {
                 return i;
+            }
         }
         return -1;
-    } 
-    
+    }
+
     private static void mensajeEmergente(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -555,12 +556,12 @@ public class VentanaHabitacion extends javax.swing.JFrame {
                 hab.getTipo(), hab.getCapacidad(), hab.getEstado()});
         }
     }
-    
-    private void cargarHabitacion(JTable tabla){
+
+    private void cargarHabitacion(JTable tabla) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         model.setRowCount(0);
         model.addRow(new Object[]{habitacion.getCodigo(), habitacion.getTipo(),
-        habitacion.getCapacidad(), habitacion.getEstado()});
+            habitacion.getCapacidad(), habitacion.getEstado()});
     }
 
     public void eliminarContenidoTabla(JTable tablaActual) {

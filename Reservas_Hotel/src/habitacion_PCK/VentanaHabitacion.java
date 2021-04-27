@@ -1,5 +1,12 @@
 package habitacion_PCK;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -10,7 +17,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     // atributos
     private Habitacion habitacion;
     private boolean habitacionExiste;
-
+            
     // constructor
     public VentanaHabitacion() {
         initComponents();
@@ -453,8 +460,9 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private void bt_crearH_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearH_guardarActionPerformed
         habitacion.setCodigo(tf_crearH_codigo.getText());
         habitacion.setTipo(cb_crearH_tipo.getSelectedItem().toString());
-        habitacion.setCapacidad(Integer.parseInt(cb_crearH_tipo.getSelectedItem().toString()));
+        habitacion.setCapacidad(Integer.parseInt(cb_crearH_capacidad.getSelectedItem().toString()));
         habitacion.setEstado(cb_crearH_estado.getSelectedItem().toString());
+        habitacion.insertarDP();
         mensajeEmergente("Notificación", "¡Habitación creada con éxito!");
     }//GEN-LAST:event_bt_crearH_guardarActionPerformed
 

@@ -2,13 +2,14 @@ package driver_PCK;
 
 import cliente_PCK.*;
 import habitacion_PCK.*;
+import reservas_PCK.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
     // atributos
     private VentanaCliente ventanaCliente;
     private VentanaHabitacion ventanaHabitacion;
-    // private VentanaReserva ventanaReserva;
+    private VentanaReserva ventanaReserva;
 
     // constructor
     public MenuPrincipal() {
@@ -17,7 +18,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // inicializar las ventanas
         ventanaCliente = new VentanaCliente();
         ventanaHabitacion = new VentanaHabitacion();
-        //ventanaReserva = new VentanaReserva();
+        ventanaReserva = new VentanaReserva();
 
         setLocationRelativeTo(null);
     }
@@ -101,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void bt_menuP_reservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_menuP_reservasActionPerformed
         this.setVisible(false);
-        ventanaHabitacion.setVisible(true);
+        ventanaReserva.setVisible(true);
     }//GEN-LAST:event_bt_menuP_reservasActionPerformed
 
     /**

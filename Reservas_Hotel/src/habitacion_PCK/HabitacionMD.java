@@ -63,7 +63,20 @@ public class HabitacionMD {
     }
 
     public void modificarMD() {
-        
+                try {
+            PreparedStatement st = conn.prepareStatement("UPDATE Habitacion SET tipo=?, capacidad=?, estado=? where codigo=?");
+            st.setString(1, habitaciondp.getTipo());
+            st.setInt(2, habitaciondp.getCapacidad());
+            st.setString(3, habitaciondp.getEstado());
+            st.setString(4, habitaciondp.getCodigo());
+            
+            int a = st.executeUpdate();
+            System.out.println("MODIFICAR HABITACION EXITOSO");
+
+        } catch (SQLException ex) {
+            System.out.println("MODIFICAR HABITACION FALLIDO");
+            Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void eliminarMD() {

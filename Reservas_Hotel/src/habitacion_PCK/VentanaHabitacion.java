@@ -502,12 +502,14 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     private void bt_actualizarH_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_actualizarH_buscarActionPerformed
         habitacion.setCodigo(tf_actualizarH_codigo.getText());
         if (habitacion.verificarExisteDP()) {
+            // cargar los datos de la habitacion
+            habitacion.consultarDP();
             // bloquear la modificacion del codigo
             tf_actualizarH_codigo.setEditable(false);
             // recorrer los combo box para presentar la opcion actual correcta
             cb_actualizarH_tipo.setSelectedIndex(obtenerIndice(habitacion.getTipo(), cb_actualizarH_tipo));
             cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(String.valueOf(habitacion.getCapacidad()), cb_actualizarH_capacidad));
-            cb_actualizarH_capacidad.setSelectedIndex(obtenerIndice(habitacion.getEstado(), cb_actualizarH_estado));
+            cb_actualizarH_estado.setSelectedIndex(obtenerIndice(habitacion.getEstado(), cb_actualizarH_estado));
             habitacionExiste = true;
         } else {
             mensajeEmergente("Error", "Código inválido");
@@ -536,7 +538,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     // METODOS DE LA CLASE
     private int obtenerIndice(String opcion, JComboBox comboBox) {
         for (int i = 0; i < comboBox.getItemCount(); i++) {
-            if (opcion.trim().toLowerCase().equals(comboBox.getComponent(i).toString().toLowerCase())) {
+            if (opcion.equals(comboBox.getItemAt(i).toString())) {
                 return i;
             }
         }

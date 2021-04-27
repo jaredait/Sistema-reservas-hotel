@@ -126,12 +126,12 @@ public class ClienteMD {
             result = stmt.executeQuery(cadena);
             int i = 0;
             while (result.next()) {
-                String cedula = String.valueOf(result.getString("cedula"));
-                String nombre = String.valueOf(result.getString("nombre"));
-                String apellido = String.valueOf(result.getString("apellido"));
+                String cedula = result.getString("cedula");
+                String nombre = result.getString("nombre");
+                String apellido = result.getString("apellido");
                 int edad = result.getInt("edad");
                 int telefono = result.getInt("telefono");
-                String email = String.valueOf(result.getString("email"));
+                String email = result.getString("email");
                 arrClientes[i] = new Cliente(cedula, nombre, apellido, edad, telefono, email);
                 i++;
             }

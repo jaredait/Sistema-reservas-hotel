@@ -28,6 +28,9 @@ public class VentanaReserva extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        bt_crearR_actualizar = new javax.swing.JButton();
+        dt_crearR_inicio = new com.toedter.calendar.JDateChooser();
+        dt_crearR_fin = new com.toedter.calendar.JDateChooser();
         jp_LISTAR_Rs = new javax.swing.JPanel();
         bt_listarR_listar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -54,6 +57,8 @@ public class VentanaReserva extends javax.swing.JFrame {
         bt_modificarR_buscar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         bt_modificarR_guardar = new javax.swing.JButton();
+        dt_modificarR_inicio = new com.toedter.calendar.JDateChooser();
+        dt_modificarR_fin = new com.toedter.calendar.JDateChooser();
         jp_ELIMINAR_R = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         tf_eliminarR_codigo = new javax.swing.JTextField();
@@ -102,50 +107,68 @@ public class VentanaReserva extends javax.swing.JFrame {
 
         jButton2.setText("Guardar");
 
+        bt_crearR_actualizar.setText("Actualizar");
+
         javax.swing.GroupLayout jp_CREAR_RLayout = new javax.swing.GroupLayout(jp_CREAR_R);
         jp_CREAR_R.setLayout(jp_CREAR_RLayout);
         jp_CREAR_RLayout.setHorizontalGroup(
             jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_CREAR_RLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jp_CREAR_RLayout.createSequentialGroup()
-                                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)))
-                                .addGap(94, 94, 94)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1)
+                        .addGap(49, 49, 49)
+                        .addComponent(bt_crearR_actualizar))
                     .addGroup(jp_CREAR_RLayout.createSequentialGroup()
-                        .addGap(459, 459, 459)
-                        .addComponent(jButton2)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                                        .addGap(440, 440, 440)
+                                        .addComponent(jButton2))
+                                    .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                                        .addGap(50, 50, 50)
+                                        .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(dt_crearR_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                            .addComponent(dt_crearR_fin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(94, 94, 94)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_CREAR_RLayout.setVerticalGroup(
             jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_CREAR_RLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addGap(15, 15, 15)
+                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(bt_crearR_actualizar))
                 .addGap(18, 18, 18)
-                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jp_CREAR_RLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel2)
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(35, 35, 35)
+                                .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jp_CREAR_RLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jLabel3))
+                                    .addComponent(dt_crearR_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel4))
+                            .addComponent(dt_crearR_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(14, 14, 14))
         );
@@ -302,9 +325,14 @@ public class VentanaReserva extends javax.swing.JFrame {
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addGroup(jp_MODIFICAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel9))
+                    .addGroup(jp_MODIFICAR_RLayout.createSequentialGroup()
+                        .addGroup(jp_MODIFICAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(46, 46, 46)
+                        .addGroup(jp_MODIFICAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dt_modificarR_inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt_modificarR_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jp_MODIFICAR_RLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(61, 61, 61)
@@ -336,6 +364,7 @@ public class VentanaReserva extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)))
                 .addGroup(jp_MODIFICAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jp_MODIFICAR_RLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
@@ -345,10 +374,13 @@ public class VentanaReserva extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
-                        .addComponent(jLabel8))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jLabel9)
+                        .addComponent(jLabel8)
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_MODIFICAR_RLayout.createSequentialGroup()
+                        .addComponent(dt_modificarR_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))
+                    .addComponent(dt_modificarR_fin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bt_modificarR_guardar)
                 .addGap(15, 15, 15))
@@ -491,11 +523,16 @@ public class VentanaReserva extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_consultarR_buscar;
+    private javax.swing.JButton bt_crearR_actualizar;
     private javax.swing.JButton bt_eliminarR_buscar;
     private javax.swing.JButton bt_eliminarR_eliminar;
     private javax.swing.JButton bt_listarR_listar;
     private javax.swing.JButton bt_modificarR_buscar;
     private javax.swing.JButton bt_modificarR_guardar;
+    private com.toedter.calendar.JDateChooser dt_crearR_fin;
+    private com.toedter.calendar.JDateChooser dt_crearR_inicio;
+    private com.toedter.calendar.JDateChooser dt_modificarR_fin;
+    private com.toedter.calendar.JDateChooser dt_modificarR_inicio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

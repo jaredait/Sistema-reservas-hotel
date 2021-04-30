@@ -18,6 +18,7 @@ public class VentanaReserva extends javax.swing.JFrame {
 
     public VentanaReserva() {
         initComponents();
+        setLocationRelativeTo(null);
 
         // inicializar atributos de la clase
         reserva = new Reserva();

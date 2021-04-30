@@ -19,6 +19,8 @@ public class Reserva {
     // constructor
     public Reserva() {
         reservamd = new ReservaMD(this);
+        cliente = new Cliente();
+        habitacion = new Habitacion();
     }
 
     // metodos

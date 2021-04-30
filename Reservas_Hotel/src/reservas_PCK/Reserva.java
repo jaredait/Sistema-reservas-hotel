@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import habitacion_PCK.*;
 import cliente_PCK.*;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Reserva {
 
@@ -21,6 +24,21 @@ public class Reserva {
         reservamd = new ReservaMD(this);
         cliente = new Cliente();
         habitacion = new Habitacion();
+    }
+    public Reserva(String codigo, Date fechaInicio, Date fechaFin, String codigoH, String cedulaC){
+        this.codigo = codigo;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        
+        habitacion.setCodigo(codigoH);
+        habitacion.consultarDP();
+        
+        cliente.setCedula(cedulaC);
+        try {
+            cliente.consultarDP();
+        } catch (SQLException ex) {
+            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // metodos

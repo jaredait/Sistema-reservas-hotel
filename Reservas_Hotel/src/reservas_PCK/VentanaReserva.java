@@ -223,6 +223,11 @@ public class VentanaReserva extends javax.swing.JFrame {
         jTabbedPane1.addTab("Crear reserva", jp_CREAR_R);
 
         bt_listarR_listar.setText("Listar");
+        bt_listarR_listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_listarR_listarActionPerformed(evt);
+            }
+        });
 
         tb_listarR_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -557,6 +562,10 @@ public class VentanaReserva extends javax.swing.JFrame {
         reserva.setFechaFin(dt_crearR_fin.getDate());
         reserva.insertarDP();
     }//GEN-LAST:event_bt_crearR_guardarActionPerformed
+
+    private void bt_listarR_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarR_listarActionPerformed
+        imprimirListaClientes(tb_listarR_tabla);
+    }//GEN-LAST:event_bt_listarR_listarActionPerformed
 
     /**
      * @param args the command line arguments

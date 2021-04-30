@@ -73,10 +73,29 @@ public class ReservaMD {
     }
 
     public Reserva[] consultarTodas() {
-        return new Reserva[0];
+        Reserva[] reservas = new Reserva[consultarLongitud()];
+        cadena = "SELECT codigo, fechaInicio, fechaFin, habitacion, cedulaCliente FROM Reserva";
+        try {
+            result = stmt.executeQuery(cadena);
+            stmt = conn.createStatement();
+            int i = 0;
+            while (result.next()) {
+                String codigo = result.getString("codigo");
+                Date fechaInicio = result.getDate("fechaInicio");
+                Date fechaFin = result.getDate("fechaFin");
+                String habitacion = result.getString("habitacion");
+                String cedula = result.getString("cedulaCliente");
+                reservas[i] = new Reserva(codigo, fechaInicio, fechaFin, habitacion, cedula);
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return reservas;
     }
-    
-    public int consultarLongitud(){
+
+    public int consultarLongitud() {
         cadena = "SELECT COUNT(*) AS rowcount FROM Reserva";
         try {
             stmt = conn.createStatement();
@@ -88,7 +107,7 @@ public class ReservaMD {
             Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
-        
+
     }
 
 }

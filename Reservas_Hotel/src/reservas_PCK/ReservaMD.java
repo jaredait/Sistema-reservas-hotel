@@ -71,7 +71,18 @@ public class ReservaMD {
     }
 
     public void modificar() {
-
+        try {
+            PreparedStatement st = conn.prepareStatement("UPDATE Reserva SET fechaInicio=?, fechaFin=?, habitacion=?, cedulaCliente=? WHERE codigo=?");
+            st.setDate(1, new java.sql.Date(reserva.getFechaInicio().getTime()));
+            st.setDate(2, new java.sql.Date(reserva.getFechaFin().getTime()));
+            st.setString(3, reserva.getHabitacion().getCodigo());
+            st.setString(4, reserva.getCliente().getCedula());
+            st.setString(5, reserva.getCodigo());    
+            int a = st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public void eliminar() {

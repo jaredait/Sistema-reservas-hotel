@@ -376,10 +376,20 @@ public class VentanaReserva extends javax.swing.JFrame {
         jLabel10.setText("Código reserva:");
 
         bt_modificarR_buscar.setText("Buscar");
+        bt_modificarR_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modificarR_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Reserva modificada:");
 
         bt_modificarR_guardar.setText("Guardar");
+        bt_modificarR_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modificarR_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_MODIFICAR_RLayout = new javax.swing.GroupLayout(jp_MODIFICAR_R);
         jp_MODIFICAR_R.setLayout(jp_MODIFICAR_RLayout);
@@ -575,13 +585,47 @@ public class VentanaReserva extends javax.swing.JFrame {
 
     private void bt_consultarR_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarR_buscarActionPerformed
         reserva.setCodigo(tf_consultarR_codigo.getText());
-        if(reserva.verificarExisteDP()){
+        if (reserva.verificarExisteDP()) {
             reserva.consultarDP();
             imprimirUnicaReserva(tb_consultarR_tabla);
-        } else{
+        } else {
             JOptionPane.showInternalMessageDialog(null, "Código inválido");
         }
     }//GEN-LAST:event_bt_consultarR_buscarActionPerformed
+
+    private void bt_modificarR_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificarR_buscarActionPerformed
+        reserva.setCodigo(tf_modificarR_codigo.getText());
+        if (reserva.verificarExisteDP()) {
+            tf_modificarR_codigo.setEnabled(false);
+            reservaExiste = true;
+            reserva.consultarDP();
+            imprimirListaClientes(tb_modificarR_cliente);
+            imprimirListaHabitaciones(tb_modificarR_habitacion);
+            dt_modificarR_inicio.setDate(reserva.getFechaInicio());
+            dt_modificarR_fin.setDate(reserva.getFechaFin());
+        } else {
+            JOptionPane.showInternalMessageDialog(null, "Reserva no encontrada");
+        }
+    }//GEN-LAST:event_bt_modificarR_buscarActionPerformed
+
+    private void bt_modificarR_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificarR_guardarActionPerformed
+        if (reservaExiste) {
+            reserva.setCliente(clientes[tb_modificarR_cliente.getSelectedRow()]);
+            reserva.setHabitacion(habitaciones[tb_modificarR_habitacion.getSelectedRow()]);
+            reserva.setFechaInicio(dt_modificarR_inicio.getDate());
+            reserva.setFechaFin(dt_modificarR_fin.getDate());
+            reserva.modificarDP();
+
+            // Limpiar los campos de entrada
+            tf_modificarR_codigo.setText("");
+            tf_modificarR_codigo.setEnabled(true);
+            limpiarTabla(tb_modificarR_cliente);
+            limpiarTabla(tb_modificarR_habitacion);
+            reservaExiste = false;
+        } else {
+            JOptionPane.showInternalMessageDialog(null, "Datos inválidos");
+        }
+    }//GEN-LAST:event_bt_modificarR_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -648,7 +692,7 @@ public class VentanaReserva extends javax.swing.JFrame {
 
         for (Reserva res : reservas) {
             model.insertRow(model.getRowCount(), new Object[]{res.getCodigo(),
-                res.getFechaInicio(), res.getFechaFin(), 
+                res.getFechaInicio(), res.getFechaFin(),
                 res.getHabitacion().getCodigo(), res.getCliente().getCedula()});
         }
     }
@@ -660,6 +704,11 @@ public class VentanaReserva extends javax.swing.JFrame {
         model.insertRow(model.getRowCount(), new Object[]{reserva.getCodigo(),
             reserva.getFechaInicio(), reserva.getFechaFin(),
             reserva.getHabitacion().getCodigo(), reserva.getCliente().getCedula()});
+    }
+
+    private void limpiarTabla(JTable tabla) {
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
     }
 
 

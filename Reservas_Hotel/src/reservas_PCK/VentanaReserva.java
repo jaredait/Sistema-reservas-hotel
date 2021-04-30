@@ -6,6 +6,7 @@ import habitacion_PCK.Habitacion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,7 +68,7 @@ public class VentanaReserva extends javax.swing.JFrame {
         tf_consultarR_codigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tb_listarR_tabla1 = new javax.swing.JTable();
+        tb_consultarR_tabla = new javax.swing.JTable();
         bt_consultarR_buscar = new javax.swing.JButton();
         jp_MODIFICAR_R = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -272,7 +273,7 @@ public class VentanaReserva extends javax.swing.JFrame {
 
         jLabel5.setText("Código reserva:");
 
-        tb_listarR_tabla1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_consultarR_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -288,9 +289,14 @@ public class VentanaReserva extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(tb_listarR_tabla1);
+        jScrollPane5.setViewportView(tb_consultarR_tabla);
 
         bt_consultarR_buscar.setText("Buscar");
+        bt_consultarR_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_consultarR_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CONSULTAR_RLayout = new javax.swing.GroupLayout(jp_CONSULTAR_R);
         jp_CONSULTAR_R.setLayout(jp_CONSULTAR_RLayout);
@@ -564,8 +570,18 @@ public class VentanaReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_crearR_guardarActionPerformed
 
     private void bt_listarR_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarR_listarActionPerformed
-        imprimirListaClientes(tb_listarR_tabla);
+        imprimirListaReservas(tb_listarR_tabla);
     }//GEN-LAST:event_bt_listarR_listarActionPerformed
+
+    private void bt_consultarR_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_consultarR_buscarActionPerformed
+        reserva.setCodigo(tf_consultarR_codigo.getText());
+        if(reserva.verificarExisteDP()){
+            reserva.consultarDP();
+            imprimirUnicaReserva(tb_consultarR_tabla);
+        } else{
+            JOptionPane.showInternalMessageDialog(null, "Código inválido");
+        }
+    }//GEN-LAST:event_bt_consultarR_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -632,14 +648,15 @@ public class VentanaReserva extends javax.swing.JFrame {
 
         for (Reserva res : reservas) {
             model.insertRow(model.getRowCount(), new Object[]{res.getCodigo(),
-                res.getFechaInicio(), res.getFechaFin(), res.getHabitacion(), res.getCliente().getCedula()});
+                res.getFechaInicio(), res.getFechaFin(), 
+                res.getHabitacion().getCodigo(), res.getCliente().getCedula()});
         }
     }
 
     private void imprimirUnicaReserva(JTable tablaR) {
         DefaultTableModel model = (DefaultTableModel) tablaR.getModel();
         model.setRowCount(0);
-
+        Reserva aux = reserva;
         model.insertRow(model.getRowCount(), new Object[]{reserva.getCodigo(),
             reserva.getFechaInicio(), reserva.getFechaFin(),
             reserva.getHabitacion().getCodigo(), reserva.getCliente().getCedula()});
@@ -689,11 +706,11 @@ public class VentanaReserva extends javax.swing.JFrame {
     private javax.swing.JPanel jp_MODIFICAR_R;
     private javax.swing.JTextArea ta_crearR_detalle;
     private javax.swing.JTextArea ta_modificarR_detalle;
+    private javax.swing.JTable tb_consultarR_tabla;
     private javax.swing.JTable tb_crearR_cliente;
     private javax.swing.JTable tb_crearR_habitacion;
     private javax.swing.JTable tb_eliminarR_tabla;
     private javax.swing.JTable tb_listarR_tabla;
-    private javax.swing.JTable tb_listarR_tabla1;
     private javax.swing.JTable tb_modificarR_cliente;
     private javax.swing.JTable tb_modificarR_habitacion;
     private javax.swing.JTextField tf_consultarR_codigo;

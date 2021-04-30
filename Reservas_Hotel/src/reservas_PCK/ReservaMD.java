@@ -57,7 +57,17 @@ public class ReservaMD {
     }
 
     public void consultar() {
-
+        // agregar codigo aqui para cargar la reserva al objeto dp
+        Reserva[] reservas = consultarTodas();
+        for(Reserva res : reservas){
+            if(res.getCodigo().equals(reserva.getCodigo())){
+                reserva.setCodigo(res.getCodigo());
+                reserva.setFechaInicio(res.getFechaInicio());
+                reserva.setFechaFin(res.getFechaFin());
+                reserva.setCliente(res.getCliente());
+                reserva.setHabitacion(res.getHabitacion());                
+            }
+        }
     }
 
     public void modificar() {
@@ -69,7 +79,20 @@ public class ReservaMD {
     }
 
     public boolean verificarExisteMD() {
-        return false;
+        boolean reservaExiste = false;
+
+        cadena = "SELECT codigo FROM Reserva";
+        try {
+            result = stmt.executeQuery(cadena);
+            while (result.next()) {
+                if (reserva.getCodigo().equals(result.getString("codigo"))) {
+                    reservaExiste = true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reservaExiste;
     }
 
     public Reserva[] consultarTodas() {

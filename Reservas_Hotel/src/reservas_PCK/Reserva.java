@@ -30,9 +30,11 @@ public class Reserva {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         
+        habitacion = new Habitacion();
         habitacion.setCodigo(codigoH);
         habitacion.consultarDP();
         
+        cliente = new Cliente();
         cliente.setCedula(cedulaC);
         try {
             cliente.consultarDP();

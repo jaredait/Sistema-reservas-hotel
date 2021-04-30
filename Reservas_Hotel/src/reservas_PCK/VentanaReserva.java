@@ -1,9 +1,36 @@
 package reservas_PCK;
 
+import cliente_PCK.Cliente;
+import cliente_PCK.VentanaCliente;
+import habitacion_PCK.Habitacion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaReserva extends javax.swing.JFrame {
+
+    private Reserva reserva;
+    private boolean reservaExiste;
+    private Cliente[] clientes;
+    private Habitacion[] habitaciones;
 
     public VentanaReserva() {
         initComponents();
+
+        // inicializar atributos de la clase
+        reserva = new Reserva();
+        reservaExiste = false;
+        try {
+            clientes = reserva.getCliente().consultarTodosDP();
+            habitaciones = reserva.getHabitacion().consultarTodosDP();
+            System.out.println("CARGA DE HABITACIONES Y CLIENTES EXITOSA");
+
+        } catch (SQLException ex) {
+            System.out.println("CARGA DE HABITACIONES Y CLIENTES FALLIDA");
+            Logger.getLogger(VentanaReserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,7 +54,7 @@ public class VentanaReserva extends javax.swing.JFrame {
         ta_crearR_detalle = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        bt_crearR_guardar = new javax.swing.JButton();
         bt_crearR_actualizar = new javax.swing.JButton();
         dt_crearR_inicio = new com.toedter.calendar.JDateChooser();
         dt_crearR_fin = new com.toedter.calendar.JDateChooser();
@@ -91,9 +118,18 @@ public class VentanaReserva extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Edad", "Email", "Teléfono"
+                "Código", "Tipo", "Capacidad", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tb_crearR_habitacion.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(tb_crearR_habitacion);
         tb_crearR_habitacion.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -105,9 +141,19 @@ public class VentanaReserva extends javax.swing.JFrame {
 
         jLabel4.setText("Fecha finalización:");
 
-        jButton2.setText("Guardar");
+        bt_crearR_guardar.setText("Guardar");
+        bt_crearR_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_crearR_guardarActionPerformed(evt);
+            }
+        });
 
         bt_crearR_actualizar.setText("Actualizar");
+        bt_crearR_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_crearR_actualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_CREAR_RLayout = new javax.swing.GroupLayout(jp_CREAR_R);
         jp_CREAR_R.setLayout(jp_CREAR_RLayout);
@@ -132,7 +178,7 @@ public class VentanaReserva extends javax.swing.JFrame {
                                 .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp_CREAR_RLayout.createSequentialGroup()
                                         .addGap(440, 440, 440)
-                                        .addComponent(jButton2))
+                                        .addComponent(bt_crearR_guardar))
                                     .addGroup(jp_CREAR_RLayout.createSequentialGroup()
                                         .addGap(50, 50, 50)
                                         .addGroup(jp_CREAR_RLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -169,7 +215,7 @@ public class VentanaReserva extends javax.swing.JFrame {
                             .addComponent(dt_crearR_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(bt_crearR_guardar)
                 .addGap(14, 14, 14))
         );
 
@@ -292,9 +338,18 @@ public class VentanaReserva extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Edad", "Email", "Teléfono"
+                "Código", "Tipo", "Capacidad", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tb_modificarR_habitacion.setColumnSelectionAllowed(true);
         jScrollPane7.setViewportView(tb_modificarR_habitacion);
         tb_modificarR_habitacion.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -486,6 +541,22 @@ public class VentanaReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void bt_crearR_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearR_actualizarActionPerformed
+        imprimirListaClientes(tb_crearR_cliente);
+        imprimirListaHabitaciones(tb_crearR_habitacion);
+    }//GEN-LAST:event_bt_crearR_actualizarActionPerformed
+
+    private void bt_crearR_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearR_guardarActionPerformed
+        int rowCliente = tb_crearR_cliente.getSelectedRow();
+        int rowHabitacion = tb_crearR_habitacion.getSelectedRow();
+
+        reserva.setCliente(clientes[rowCliente]);
+        reserva.setHabitacion(habitaciones[rowHabitacion]);
+        reserva.setFechaInicio(dt_crearR_inicio.getDate());
+        reserva.setFechaFin(dt_crearR_fin.getDate());
+        reserva.insertarDP();
+    }//GEN-LAST:event_bt_crearR_guardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -521,9 +592,54 @@ public class VentanaReserva extends javax.swing.JFrame {
         });
     }
 
+    // METODOS PARA MANIPULAR CONTENEDORES
+    public void imprimirListaClientes(JTable tablaC) {
+
+        //Cliente[] clientes = reserva.getCliente().consultarTodosDP();
+        DefaultTableModel model = (DefaultTableModel) tablaC.getModel();
+        model.setRowCount(0);
+        for (Cliente cli : clientes) {
+            model.insertRow(model.getRowCount(), new Object[]{cli.getCedula(),
+                cli.getNombre(), cli.getApellido(), cli.getEdad(),
+                cli.getEmail(), cli.getTelefono()});
+        }
+    }
+
+    private void imprimirListaHabitaciones(JTable tablaH) {
+        //Habitacion[] habitaciones = reserva.getHabitacion().consultarTodosDP();
+        DefaultTableModel model = (DefaultTableModel) tablaH.getModel();
+        model.setRowCount(0);
+        for (Habitacion hab : habitaciones) {
+            model.insertRow(model.getRowCount(), new Object[]{hab.getCodigo(),
+                hab.getTipo(), hab.getCapacidad(), hab.getEstado()});
+        }
+    }
+
+    private void imprimirListaReservas(JTable tablaR) {
+        Reserva[] reservas = reserva.consultarTodas();
+        DefaultTableModel model = (DefaultTableModel) tablaR.getModel();
+        model.setRowCount(0);
+
+        for (Reserva res : reservas) {
+            model.insertRow(model.getRowCount(), new Object[]{res.getCodigo(),
+                res.getFechaInicio(), res.getFechaFin(), res.getHabitacion(), res.getCliente().getCedula()});
+        }
+    }
+
+    private void imprimirUnicaReserva(JTable tablaR) {
+        DefaultTableModel model = (DefaultTableModel) tablaR.getModel();
+        model.setRowCount(0);
+
+        model.insertRow(model.getRowCount(), new Object[]{reserva.getCodigo(),
+            reserva.getFechaInicio(), reserva.getFechaFin(),
+            reserva.getHabitacion().getCodigo(), reserva.getCliente().getCedula()});
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_consultarR_buscar;
     private javax.swing.JButton bt_crearR_actualizar;
+    private javax.swing.JButton bt_crearR_guardar;
     private javax.swing.JButton bt_eliminarR_buscar;
     private javax.swing.JButton bt_eliminarR_eliminar;
     private javax.swing.JButton bt_listarR_listar;
@@ -534,7 +650,6 @@ public class VentanaReserva extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dt_modificarR_fin;
     private com.toedter.calendar.JDateChooser dt_modificarR_inicio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

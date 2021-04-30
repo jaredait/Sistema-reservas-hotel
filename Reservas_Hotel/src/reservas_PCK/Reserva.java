@@ -78,8 +78,12 @@ public class Reserva {
     public void modificarDP() {
         reservamd.modificar();
     }
-    
-    public void eliminarDP(){
+
+    public void eliminarDP() {
         reservamd.eliminar();
+    }
+
+    public Reserva[] consultarTodas() {
+        return reservamd.consultarTodas();
     }
 }

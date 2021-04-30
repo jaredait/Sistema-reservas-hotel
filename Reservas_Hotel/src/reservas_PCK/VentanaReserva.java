@@ -468,6 +468,11 @@ public class VentanaReserva extends javax.swing.JFrame {
         jLabel13.setText("Código reserva:");
 
         bt_eliminarR_buscar.setText("Buscar");
+        bt_eliminarR_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarR_buscarActionPerformed(evt);
+            }
+        });
 
         tb_eliminarR_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -488,6 +493,11 @@ public class VentanaReserva extends javax.swing.JFrame {
         jScrollPane10.setViewportView(tb_eliminarR_tabla);
 
         bt_eliminarR_eliminar.setText("Eliminar");
+        bt_eliminarR_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_eliminarR_eliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_ELIMINAR_RLayout = new javax.swing.GroupLayout(jp_ELIMINAR_R);
         jp_ELIMINAR_R.setLayout(jp_ELIMINAR_RLayout);
@@ -626,6 +636,32 @@ public class VentanaReserva extends javax.swing.JFrame {
             JOptionPane.showInternalMessageDialog(null, "Datos inválidos");
         }
     }//GEN-LAST:event_bt_modificarR_guardarActionPerformed
+
+    private void bt_eliminarR_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarR_buscarActionPerformed
+        reserva.setCodigo(tf_eliminarR_codigo.getText());
+        if (reserva.verificarExisteDP()) {
+            reserva.consultarDP();
+            imprimirUnicaReserva(tb_eliminarR_tabla);
+            reservaExiste = true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Codigo no válido");
+        }
+    }//GEN-LAST:event_bt_eliminarR_buscarActionPerformed
+
+    private void bt_eliminarR_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_eliminarR_eliminarActionPerformed
+        if (reservaExiste) {
+            int confirmo = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar la reserva?");
+            if (confirmo == 0) {
+                reserva.eliminarDP();
+                limpiarTabla(tb_eliminarR_tabla);
+                tf_eliminarR_codigo.setText("");
+                JOptionPane.showMessageDialog(null, "Reserva eliminada con éxito");
+                reservaExiste = false;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un código válido");
+        }
+    }//GEN-LAST:event_bt_eliminarR_eliminarActionPerformed
 
     /**
      * @param args the command line arguments

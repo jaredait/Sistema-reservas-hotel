@@ -59,13 +59,13 @@ public class ReservaMD {
     public void consultar() {
         // agregar codigo aqui para cargar la reserva al objeto dp
         Reserva[] reservas = consultarTodas();
-        for(Reserva res : reservas){
-            if(res.getCodigo().equals(reserva.getCodigo())){
+        for (Reserva res : reservas) {
+            if (res.getCodigo().equals(reserva.getCodigo())) {
                 reserva.setCodigo(res.getCodigo());
                 reserva.setFechaInicio(res.getFechaInicio());
                 reserva.setFechaFin(res.getFechaFin());
                 reserva.setCliente(res.getCliente());
-                reserva.setHabitacion(res.getHabitacion());                
+                reserva.setHabitacion(res.getHabitacion());
             }
         }
     }
@@ -77,16 +77,22 @@ public class ReservaMD {
             st.setDate(2, new java.sql.Date(reserva.getFechaFin().getTime()));
             st.setString(3, reserva.getHabitacion().getCodigo());
             st.setString(4, reserva.getCliente().getCedula());
-            st.setString(5, reserva.getCodigo());    
+            st.setString(5, reserva.getCodigo());
             int a = st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public void eliminar() {
-
+        try {
+            PreparedStatement st = conn.prepareStatement("DELETE FROM Reserva WHERE codigo=?");
+            st.setString(1, reserva.getCodigo());
+            int a = st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public boolean verificarExisteMD() {

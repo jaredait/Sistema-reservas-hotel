@@ -70,6 +70,7 @@ public class Reserva {
     }
 
     public void insertarDP() {
+        codigo = "R" + String.valueOf(reservamd.consultarLongitud());
         reservamd.insertar();
     }
 

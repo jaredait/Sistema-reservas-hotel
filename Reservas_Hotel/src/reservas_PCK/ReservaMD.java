@@ -42,7 +42,7 @@ public class ReservaMD {
     public void insertar() {
         try {   // crear primero la consulta de rows de la tabla reserva y crear un secuencial para el codigo en el dp
             PreparedStatement st = conn.prepareStatement("INSERT INTO Reserva (codigo, fechaInicio, fechaFin, habitacion, cedulaCliente) values(?,?,?,?,?)");
-            //st.setString(1, reserva.getCodigo());
+            st.setString(1, reserva.getCodigo());
             st.setDate(2, new java.sql.Date(reserva.getFechaInicio().getTime()));
             st.setDate(3, new java.sql.Date(reserva.getFechaFin().getTime()));
             st.setString(4, reserva.getHabitacion().getCodigo());
@@ -75,4 +75,20 @@ public class ReservaMD {
     public Reserva[] consultarTodas() {
         return new Reserva[0];
     }
+    
+    public int consultarLongitud(){
+        cadena = "SELECT COUNT(*) AS rowcount FROM Reserva";
+        try {
+            stmt = conn.createStatement();
+            result = stmt.executeQuery(cadena);
+            result.next();
+            int count = result.getInt("rowcount");
+            return count;
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+        
+    }
+
 }

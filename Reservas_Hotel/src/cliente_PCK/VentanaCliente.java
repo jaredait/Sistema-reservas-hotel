@@ -1,6 +1,7 @@
 package cliente_PCK;
 
 import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
+import driver_PCK.MenuPrincipal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ public class VentanaCliente extends javax.swing.JFrame {
     // atributos
     Cliente cliente;
     boolean clienteExiste;
+    MenuPrincipal menuPrincipal;
 
     // constructor
     public VentanaCliente() {
@@ -510,6 +512,11 @@ public class VentanaCliente extends javax.swing.JFrame {
         tp_GESTION_CLIENTE.addTab("Consultar cliente", jp_CONSULTAR);
 
         bt_gestionC_menu.setText("Menú Principal");
+        bt_gestionC_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_gestionC_menuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -709,6 +716,12 @@ public class VentanaCliente extends javax.swing.JFrame {
             clienteExiste = false;
         }
     }//GEN-LAST:event_bt_eliminarC_eliminarActionPerformed
+
+    private void bt_gestionC_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gestionC_menuActionPerformed
+        this.setVisible(false);
+        menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+    }//GEN-LAST:event_bt_gestionC_menuActionPerformed
 
     // METODOS DE LA CLASE
     public static void mensajeEmergente(String titulo, String mensaje) {

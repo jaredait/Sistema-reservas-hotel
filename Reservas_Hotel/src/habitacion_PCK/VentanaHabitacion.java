@@ -1,5 +1,6 @@
 package habitacion_PCK;
 
+import driver_PCK.MenuPrincipal;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class VentanaHabitacion extends javax.swing.JFrame {
     // atributos
     private Habitacion habitacion;
     private boolean habitacionExiste;
+    private MenuPrincipal menuPrincipal;
 
     // constructor
     public VentanaHabitacion() {
@@ -432,6 +434,11 @@ public class VentanaHabitacion extends javax.swing.JFrame {
         tp_GESTION_HABITACION.addTab("Actualizar datos habitación", jp_ACUTALIZAR);
 
         bt_gestionH_menu.setText("Menú Principal");
+        bt_gestionH_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_gestionH_menuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -534,6 +541,12 @@ public class VentanaHabitacion extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_bt_actualizarH_guardarActionPerformed
+
+    private void bt_gestionH_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_gestionH_menuActionPerformed
+        this.setVisible(false);
+        menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
+    }//GEN-LAST:event_bt_gestionH_menuActionPerformed
 
     // METODOS DE LA CLASE
     private int obtenerIndice(String opcion, JComboBox comboBox) {

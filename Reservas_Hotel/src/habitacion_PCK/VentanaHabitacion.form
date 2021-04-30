@@ -732,6 +732,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Men&#xfa; Principal"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_gestionH_menuActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import driver_PCK.MenuPrincipal;
 
 public class VentanaReserva extends javax.swing.JFrame {
 
@@ -16,6 +17,7 @@ public class VentanaReserva extends javax.swing.JFrame {
     private boolean reservaExiste;
     private Cliente[] clientes;
     private Habitacion[] habitaciones;
+    private MenuPrincipal menuPrincipal;
 
     public VentanaReserva() {
         initComponents();
@@ -570,7 +572,9 @@ public class VentanaReserva extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        menuPrincipal = new MenuPrincipal();
+        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bt_crearR_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_crearR_actualizarActionPerformed

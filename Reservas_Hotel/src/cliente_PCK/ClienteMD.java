@@ -41,10 +41,8 @@ public class ClienteMD {
             st.setInt(5, clientedp.getTelefono());
             st.setString(6, clientedp.getEmail());
             int a = st.executeUpdate();
-            System.out.println("INSERTAR CLIENTE EXITOSO");
 
         } catch (SQLException ex) {
-            System.out.println("INSERTAR CLIENTE FALLIDO");
             Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -73,10 +71,8 @@ public class ClienteMD {
             st.setString(5, clientedp.getEmail());
             st.setString(6, clientedp.getCedula());
             int a = st.executeUpdate();
-            System.out.println("INSERTAR CLIENTE EXITOSO");
 
         } catch (SQLException ex) {
-            System.out.println("INSERTAR CLIENTE FALLIDO");
             Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -89,8 +85,6 @@ public class ClienteMD {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteMD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
     }
 
     public boolean verificarExisteMD() throws SQLException {
@@ -107,7 +101,6 @@ public class ClienteMD {
                 }
             }
         } catch (Exception ex) {
-            System.out.println("NO HAY ELEMENTOS EN LA TABLA CLIENTE");
             ex.printStackTrace();
         }
         return clienteExiste;
@@ -136,7 +129,6 @@ public class ClienteMD {
                 i++;
             }
         } catch (Exception ex) {
-            System.out.println("CONSULTAR TODOS FALLIDO");
             ex.printStackTrace();
         }
         return arrClientes;

@@ -25,15 +25,16 @@ public class Reserva {
         cliente = new Cliente();
         habitacion = new Habitacion();
     }
-    public Reserva(String codigo, Date fechaInicio, Date fechaFin, String codigoH, String cedulaC){
+
+    public Reserva(String codigo, Date fechaInicio, Date fechaFin, String codigoH, String cedulaC) {
         this.codigo = codigo;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        
+
         habitacion = new Habitacion();
         habitacion.setCodigo(codigoH);
         habitacion.consultarDP();
-        
+
         cliente = new Cliente();
         cliente.setCedula(cedulaC);
         try {
@@ -54,7 +55,6 @@ public class Reserva {
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
-
     }
 
     public Date getFechaInicio() {

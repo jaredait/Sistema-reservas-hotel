@@ -48,10 +48,7 @@ public class ReservaMD {
             st.setString(4, reserva.getHabitacion().getCodigo());
             st.setString(5, reserva.getCliente().getCedula());
             int a = st.executeUpdate();
-            System.out.println("INSERTAR RESERVA EXITOSO");
-
         } catch (SQLException ex) {
-            System.out.println("INSERTAR RESERVA FALLIDO");
             Logger.getLogger(ReservaMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -97,7 +94,6 @@ public class ReservaMD {
 
     public boolean verificarExisteMD() {
         boolean reservaExiste = false;
-
         cadena = "SELECT codigo FROM Reserva";
         try {
             result = stmt.executeQuery(cadena);

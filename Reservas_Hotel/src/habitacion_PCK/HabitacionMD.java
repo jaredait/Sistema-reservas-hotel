@@ -44,9 +44,7 @@ public class HabitacionMD {
             st.setInt(3, habitaciondp.getCapacidad());
             st.setString(4, habitaciondp.getEstado());
             int a = st.executeUpdate();
-            System.out.println("INSERTAR HABITACION EXITOSO");
         } catch (SQLException ex) {
-            System.out.println("INSERTAR HABITACION FALLIDO");
             Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -71,10 +69,8 @@ public class HabitacionMD {
             st.setString(4, habitaciondp.getCodigo());
             
             int a = st.executeUpdate();
-            System.out.println("MODIFICAR HABITACION EXITOSO");
 
         } catch (SQLException ex) {
-            System.out.println("MODIFICAR HABITACION FALLIDO");
             Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -101,9 +97,7 @@ public class HabitacionMD {
                     habitacionExiste = true;
                 }
             }
-            System.out.println("VERIFICAR EXISTE EXITOSO");
         } catch (SQLException ex) {
-            System.out.println("VERIFICAR EXISTE FALLIDO");
             Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return habitacionExiste;
@@ -133,9 +127,7 @@ public class HabitacionMD {
                 habitaciones[i] = new Habitacion(codigo, tipo, capacidad, estado);
                 i++;
             }
-            System.out.println("CONSULTAR TODAS EXITOSO");
         } catch (SQLException ex) {
-            System.out.println("CONSULTAR TODAS FALLIDO");
             Logger.getLogger(HabitacionMD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return habitaciones;

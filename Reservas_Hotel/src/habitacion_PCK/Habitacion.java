@@ -20,7 +20,6 @@ public class Habitacion {
         this.estado = estado;
     }
     
-    
     // metodos
     public void setCodigo(String codigo){
         this.codigo = codigo;

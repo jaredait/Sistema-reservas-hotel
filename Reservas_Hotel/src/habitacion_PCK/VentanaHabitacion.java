@@ -538,7 +538,6 @@ public class VentanaHabitacion extends javax.swing.JFrame {
             cb_actualizarH_capacidad.setSelectedIndex(0);
             cb_actualizarH_estado.setSelectedIndex(0);
             habitacionExiste = false;
-
         }
     }//GEN-LAST:event_bt_actualizarH_guardarActionPerformed
 
